@@ -73,7 +73,7 @@ def deletewhatsappdatabases():
     selecteddir = '/storage/emulated/0/WhatsApp/Databases/'
     for f in os.listdir(selecteddir):
         print f
-        if re.search('msgstore-20(.*)crypt8'):
+        if re.search('msgstore-20(.*)crypt8', f):
             os.remove(os.path.join(selecteddir, f))
     print "9. Back"
     print "0. Quit" 
