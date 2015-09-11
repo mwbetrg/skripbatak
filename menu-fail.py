@@ -124,6 +124,11 @@ def deleteidiomfiles():
 def deleteenglishfiles():
     deletewordfiles()
     deleteidiomfiles()
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
 
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
