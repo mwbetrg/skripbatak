@@ -157,8 +157,10 @@ def exit():
 # Menu definition
 menu_actions = {
     'cv': calendarview,
-    'dwd': deletewhatsappdatabases,
     'def': deleteenglishfiles,
+    'dw': deletewordfiles,
+    'di': deleteidiomfiles,
+    'dwd': deletewhatsappdatabases,
     '9': back,
     'q': exit,
 }
