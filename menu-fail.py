@@ -85,15 +85,15 @@ def deletewordfiles():
     selecteddir = '/storage/extSdCard/texdocs/wotd/'
     for f in os.listdir(selecteddir):
         print f
-        if re.search('wotd-20(.*).jpg'):
+        if re.search('wotd-20(.*).jpg', f):
             os.remove(os.path.join(selecteddir, f))
-        if re.search('wotd-20(.*).aux'):
+        if re.search('wotd-20(.*).aux', f):
             os.remove(os.path.join(selecteddir, f))
-        if re.search('wotd-20(.*).log'):
+        if re.search('wotd-20(.*).log', f):
             os.remove(os.path.join(selecteddir, f))
-        if re.search('wotd-20(.*).pdf'):
+        if re.search('wotd-20(.*).pdf', f):
             os.remove(os.path.join(selecteddir, f))
-        if re.search('wotd-20(.*).pdf.jpg'):
+        if re.search('wotd-20(.*).pdf.jpg', f):
             os.remove(os.path.join(selecteddir, f))
     print "9. Back"
     print "0. Quit" 
@@ -105,15 +105,15 @@ def deleteidiomfiles():
     selecteddir = '/storage/extSdCard/texdocs/iotd/'
     for f in os.listdir(selecteddir):
         print f
-        if re.search('iotd-20(.*).jpg'):
+        if re.search('iotd-20(.*).jpg', f):
             os.remove(os.path.join(selecteddir, f))
-        if re.search('iotd-20(.*).aux'):
+        if re.search('iotd-20(.*).aux', f):
             os.remove(os.path.join(selecteddir, f))
-        if re.search('iotd-20(.*).log'):
+        if re.search('iotd-20(.*).log', f):
             os.remove(os.path.join(selecteddir, f))
-        if re.search('iotd-20(.*).pdf'):
+        if re.search('iotd-20(.*).pdf', f):
             os.remove(os.path.join(selecteddir, f))
-        if re.search('iotd-20(.*).pdf.jpg'):
+        if re.search('iotd-20(.*).pdf.jpg', f):
             os.remove(os.path.join(selecteddir, f))
     print "9. Back"
     print "0. Quit" 
