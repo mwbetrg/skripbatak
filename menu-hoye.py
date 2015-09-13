@@ -69,40 +69,19 @@ class Hutang(BaseModel):
     class Meta:
         db_table = 'hutang'
 
-class Questionsmaster(BaseModel):
-    cat = TextField(null=True)
-    level  = TextField(null=True)
-    source = TextField(null=True)
-    time = TimeField(null=True)
-    topic = TextField()
-    type = TextField(null=True)
+class Ingat2015(BaseModel):
+    id = IntegerField(null=True)
+    kuadran = CharField(null=True)
+    masa = DateTimeField(null=True)
+    nota = CharField(null=True)
+    perkara = CharField()
+    status = CharField(null=True)
 
     class Meta:
-        db_table = 'questionsmaster'
+        db_table = 'ingat2015'        
+        
 
-class Questionsfb(BaseModel):
-    answer = TextField(null=True)
-    item = TextField(null=True)
-    topicid = ForeignKeyField(db_column='topicid', rel_model=Questionsmaster, to_field='id')
-
-    class Meta:
-        db_table = 'questionsfb'
-
-class Questionsmcq(BaseModel):
-    choicea = TextField(null=True)
-    choiceb = TextField(null=True)
-    choicec = TextField(null=True)
-    choiced = TextField(null=True)
-    item = TextField()
-    ticka = TextField(null=True)
-    tickb = TextField(null=True)
-    tickc = TextField(null=True)
-    tickd = TextField(null=True)
-    topicid = ForeignKeyField(db_column='topicid', null=True, rel_model=Questionsmaster, to_field='id')
-
-    class Meta:
-        db_table = 'questionsmcq'
-
+    
 class Soruogos2014(BaseModel):
     perkara = TextField()
     rm = TextField()
@@ -260,7 +239,39 @@ def semakperkara():
     exec_menu(choice)
     return
 
+def masukingat():
+    tarikh = raw_input("Masukkan tarikh: \n")
+    if tarikh == "":
+        tarikh = today.strftime("%Y%m%d")
+    else:
+        tarikh = tarikh
+    print tarikh
 
+    perkara = raw_input("Masukkan perkara: \n")
+    status = raw_input("Masukkan status: \n") or "belum"
+    nota = raw_input("Masukkan nota: \n") or "-"
+    kuadran = raw_input("Masukkan kuadran: \n") or "2"
+    simpan =  Ingat2015.insert(masa=tarikh,perkara=perkara, nota=nota, status = status, kuadran = kuadran).execute()
+    print "\n"+tarikh+"\n"+perkara+"\n"+kuadran+"\n"
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return        
+
+def cariingat():
+    reload(sys)
+    sys.setdefaultencoding('utf8')
+    print "Cari dalam Ingat\n"
+    kata = raw_input("Masukkan perkataan: \n")
+    u = Ingat2015.select().where(Ingat2015.perkara.contains(kata))
+    for i in u:
+        print "\n"+str(i.masa)+"\n\n"+str(i.perkara)+"("+i.kuadran+")\n\n"
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
 
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
@@ -290,9 +301,11 @@ def exit():
 # Menu definition
 menu_actions = {
     'ch': carihoye,
+    'ci': cariingat,
     'cv': calendarview,
     'mh': masukhoye,
     'ms': masuksoru,
+    'mi': masukingat,
     'sp': semakperkara,
     'st': semaktarikh,
     '9': back,
