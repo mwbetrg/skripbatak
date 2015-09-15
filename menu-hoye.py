@@ -80,8 +80,6 @@ class Ingat2015(BaseModel):
     class Meta:
         db_table = 'ingat2015'        
         
-
-    
 class Soruogos2014(BaseModel):
     perkara = TextField()
     rm = TextField()
@@ -266,7 +264,24 @@ def cariingat():
     kata = raw_input("Masukkan perkataan: \n")
     u = Ingat2015.select().where(Ingat2015.perkara.contains(kata))
     for i in u:
-        print "\n"+str(i.masa)+"\n\n"+str(i.perkara)+"("+i.kuadran+")\n\n"
+        print str(i.masa)+" : "+str(i.perkara)+"("+i.kuadran+")\n"
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
+def buatsiap(): 
+    u = Ingat2015.select().where(Ingat2015.status ==\
+                                  'belum').order_by(Ingat2015.masa)
+    for i in u:
+        print "["+str(i.id)+"] "+ str(i.masa)+":: "+i.perkara+" :: ("+str(i.kuadran)+")"
+
+    selectingatid = raw_input("Masukkan id ingat: \n ")
+    query = Ingat2015.update(\
+                status="selesai").\
+               where(Ingat2015.id == selectingatid)
+    query.execute()
     print "9. Back"
     print "0. Quit" 
     choice = raw_input(" >>  ")
@@ -300,6 +315,7 @@ def exit():
 
 # Menu definition
 menu_actions = {
+    'bs': buatsiap,
     'ch': carihoye,
     'ci': cariingat,
     'cv': calendarview,
