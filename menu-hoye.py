@@ -246,10 +246,10 @@ def masukingat():
     print tarikh
 
     perkara = raw_input("Masukkan perkara: \n")
-    status = raw_input("Masukkan status: \n") or "belum"
+    
     nota = raw_input("Masukkan nota: \n") or "-"
     kuadran = raw_input("Masukkan kuadran: \n") or "2"
-    simpan =  Ingat2015.insert(masa=tarikh,perkara=perkara, nota=nota, status = status, kuadran = kuadran).execute()
+    simpan =  Ingat2015.insert(masa=tarikh,perkara=perkara, nota=nota, status = "belum", kuadran = kuadran).execute()
     print "\n"+tarikh+"\n"+perkara+"\n"+kuadran+"\n"
     print "9. Back"
     print "0. Quit" 
@@ -288,6 +288,25 @@ def buatsiap():
     exec_menu(choice)
     return
 
+def masukhutang():
+    tarikh = raw_input("Masukkan tarikh: \n")
+    if tarikh == "":
+        tarikh = today.strftime("%Y%m%d")
+    else:
+        tarikh = tarikh
+    print tarikh
+
+    perkara = raw_input("Masukkan perkara: \n")
+    
+    rm = raw_input("Masukkan RM: \n")
+    simpan = Hutang.insert(tarikh=int(tarikh),perkara=perkara, rm=rm).execute()
+    print "\n"+tarikh+"\n"+perkara+"\n"+rm+"\n"
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
     tahunini = int(datetime.datetime.now().year)
@@ -319,7 +338,8 @@ menu_actions = {
     'ch': carihoye,
     'ci': cariingat,
     'cv': calendarview,
-    'mh': masukhoye,
+    'ho': masukhoye,
+    'hu': masukhutang,
     'ms': masuksoru,
     'mi': masukingat,
     'sp': semakperkara,
