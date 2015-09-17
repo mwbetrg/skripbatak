@@ -271,9 +271,20 @@ def cariingat():
     exec_menu(choice)
     return
 
+def cariingatk2():
+    u = Ingat2015.select().where(Ingat2015.kuadran == 2).order_by(-Ingat2015.masa)
+    print "="*30
+    for i in u:
+        print str(i.masa)+" : "+str(i.perkara)+"("+i.kuadran+")\n"
+    print "="*30
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
 def buatsiap(): 
     u = Ingat2015.select().where(Ingat2015.status ==\
-                                  'belum').order_by(Ingat2015.masa)
+                                  'belum')&(Ingat2015.status=="2").order_by(Ingat2015.masa)
     for i in u:
         print "["+str(i.id)+"] "+ str(i.masa)+":: "+i.perkara+" :: ("+str(i.kuadran)+")"
 
@@ -307,6 +318,31 @@ def masukhutang():
     exec_menu(choice)
     return
 
+def carihutang():
+    print "Cari dalam Hutang\n"
+    kata = raw_input("Masukkan perkataan: \n")
+    u = Hutang.select().where(Hutang.perkara.contains(kata))
+    for i in u:
+        print str(i.tarikh)+" : "+str(i.perkara)+"("+i.rm+")\n"
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+    
+def carihutangtarikh():
+    print "Cari tarikh hutang\n"
+    hb1 = raw_input("Masukkan tarikh mula [YYYYMMDD]: \n")
+    hb2 = raw_input("Masukkan tarikh akhir [YYYYMMDD]: \n")
+    u = Hutang.select().where(Hutang.tarikh.between(hb1, hb2))
+    for i in u:
+        print str(i.tarikh)+" : "+str(i.perkara)+"("+i.rm+")\n"
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
     tahunini = int(datetime.datetime.now().year)
@@ -317,8 +353,6 @@ def calendarview():
     exec_menu(choice)
     return
 
-
-    
 
 # Back to main menu
 def back():
@@ -337,6 +371,9 @@ menu_actions = {
     'bs': buatsiap,
     'ch': carihoye,
     'ci': cariingat,
+    'chu': carihutang,
+    'chuta': carihutangtarikh,
+    'ckd': cariingatk2,
     'cv': calendarview,
     'ho': masukhoye,
     'hu': masukhutang,
