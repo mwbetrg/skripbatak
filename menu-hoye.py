@@ -258,13 +258,13 @@ def masukingat():
     return        
 
 def cariingat():
-    reload(sys)
-    sys.setdefaultencoding('utf8')
     print "Cari dalam Ingat\n"
     kata = raw_input("Masukkan perkataan: \n")
-    u = Ingat2015.select().where(Ingat2015.perkara.contains(kata))
+    u = Ingat2015.select().where(Ingat2015.perkara.contains(kata)&(Ingat2015.status=="belum")).order_by(-Ingat2015.masa)
+    print "="*30
     for i in u:
         print str(i.masa)+" : "+str(i.perkara)+"("+i.kuadran+")\n"
+    print "="*30
     print "9. Back"
     print "0. Quit" 
     choice = raw_input(" >>  ")
@@ -272,7 +272,8 @@ def cariingat():
     return
 
 def cariingatk2():
-    u = Ingat2015.select().where(Ingat2015.kuadran == 2).order_by(-Ingat2015.masa)
+    u = Ingat2015.select().where((Ingat2015.kuadran=="2")&(Ingat2015.status=="belum")).order_by(-Ingat2015.masa)
+    
     print "="*30
     for i in u:
         print str(i.masa)+" : "+str(i.perkara)+"("+i.kuadran+")\n"
@@ -282,12 +283,13 @@ def cariingatk2():
     choice = raw_input(" >>  ")
     exec_menu(choice)
     return
+    
 def buatsiap(): 
-    u = Ingat2015.select().where(Ingat2015.status ==\
-                                  'belum')&(Ingat2015.status=="2").order_by(Ingat2015.masa)
+    u = Ingat2015.select().where(Ingat2015.status == 'belum').order_by(-Ingat2015.masa)
+    print "="*30
     for i in u:
         print "["+str(i.id)+"] "+ str(i.masa)+":: "+i.perkara+" :: ("+str(i.kuadran)+")"
-
+    print "="*30
     selectingatid = raw_input("Masukkan id ingat: \n ")
     query = Ingat2015.update(\
                 status="selesai").\
