@@ -19,19 +19,21 @@ from peewee import *
 import datetime
 import time
 import calendar
-
+import sqlite3
 
 #-----------------------------------------------------------------------    
 
 if os.path.exists('/storage/extSdCard'):
-    db = SqliteDatabase('/storage/extSdCard/mydb/lessonplan2010.db', **{})
+    database = SqliteDatabase('/storage/extSdCard/mydb/lessonplan2010.db', **{})
+    backupdir = '/storage/extSdCard/dbbackup/'
+    db = '/storage/extSdCard/mydb/lessonplan2010.db'
 else:
-    db = SqliteDatabase('lessonplan2010.db', **{})
+    database = SqliteDatabase('lessonplan2010.db', **{})
 
 
 class BaseModel(Model):
     class Meta:
-        database = db
+        database = database
 
 class Lessonplanbank(BaseModel):
     activity1 = CharField(null=True)
@@ -80,12 +82,13 @@ class Lessonplan2015(BaseModel):
     class Meta:
         db_table = 'lessonplan2015'
 
-db.connect()
+database.connect()
 
 #-----------------------------------------------------------------------    
 
 tahunini = datetime.datetime.today().year
 hariini = datetime.datetime.today()
+harini = hariini.strftime("%Y%m%d")
 
 # Main definition - constants
 menu_actions  = {}  
@@ -143,6 +146,19 @@ def menu2():
     return
 
 #-----------------------------------------------------------------------    
+
+def peliharadata():
+    reload(sys)
+    sys.setdefaultencoding('utf8')
+    con = sqlite3.connect(db)
+    with open(backupdir+'dump-lp2015-'+harini+'.sql', 'w') as f:
+        for line in con.iterdump():
+            f.write('%s\n' % line)
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
 
 # Masuk Lesson Bank
 
@@ -1364,6 +1380,7 @@ menu_actions = {
     'main_menu': main_menu,
     '1': menu1,
     '2': menu2,
+    'bu': peliharadata,
     'cv': calendarview,
     'dl': deletelp2015id,
     'mb': masuklessonplanbank,
