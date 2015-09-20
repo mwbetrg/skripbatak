@@ -19,10 +19,13 @@ import sys, os
 import datetime
 import time
 import calendar
+import sqlite3
 from peewee import *
 
 if os.path.exists('/storage/extSdCard'):
     database = SqliteDatabase('/storage/extSdCard/mydb/9510305.sqlite', **{})
+    backupdir = '/storage/extSdCard/dbbackup/'
+    db = '/storage/extSdCard/mydb/9510305.sqlite'
 else:
     database = SqliteDatabase('9510305.sqlite', **{})
 
@@ -95,7 +98,7 @@ esok = tomorrow.strftime("%Y%m%d")
  
 tahunini = datetime.datetime.today().year
 bulanini = today.strftime("%Y%m")
-
+harini = today.strftime("%Y%m%d")
 # Main definition - constants
 menu_actions  = {}  
 
@@ -284,6 +287,30 @@ def cariingatk2():
     exec_menu(choice)
     return
     
+def cariingatharini():
+    u = Ingat2015.select().where(Ingat2015.masa==harini).order_by(-Ingat2015.masa)
+    print "="*30
+    for i in u:
+        print "["+str(i.id)+"]"+str(i.masa)+" : "+str(i.perkara)+"("+i.kuadran+")\n"
+    print "="*30
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+    
+def cariingatesok():
+    u = Ingat2015.select().where(Ingat2015.masa==esok).order_by(-Ingat2015.kuadran)
+    print "="*30
+    for i in u:
+        print "["+str(i.id)+"]"+str(i.masa)+" : "+str(i.perkara)+"("+i.kuadran+")\n"
+    print "="*30
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+        
 def buatsiap(): 
     u = Ingat2015.select().where(Ingat2015.status == 'belum').order_by(-Ingat2015.masa)
     print "="*30
@@ -345,6 +372,19 @@ def carihutangtarikh():
     exec_menu(choice)
     return
 
+def peliharadata():
+    reload(sys)
+    sys.setdefaultencoding('utf8')
+    con = sqlite3.connect(db)
+    with open(backupdir+'dump-hoye-'+harini+'.sql', 'w') as f:
+        for line in con.iterdump():
+            f.write('%s\n' % line)
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+    
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
     tahunini = int(datetime.datetime.now().year)
@@ -371,8 +411,11 @@ def exit():
 # Menu definition
 menu_actions = {
     'bs': buatsiap,
+    'bu': peliharadata, 
     'ch': carihoye,
     'ci': cariingat,
+    'hn' : cariingatharini,
+    'he': cariingatesok,
     'chu': carihutang,
     'chuta': carihutangtarikh,
     'ckd': cariingatk2,
