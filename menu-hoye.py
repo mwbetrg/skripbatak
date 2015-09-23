@@ -91,6 +91,18 @@ class Soruogos2014(BaseModel):
     class Meta:
         db_table = 'soruogos2014'
 
+class Waktusolatdungun(BaseModel):
+    asar = CharField(null=True)
+    imsak = CharField(null=True)
+    isyak = CharField(null=True)
+    maghrib = CharField(null=True)
+    subuh = CharField(null=True)
+    syuruk = CharField(null=True)
+    tarikh = CharField(null=True)
+    zohor = CharField(null=True)
+
+    class Meta:
+        db_table = 'waktusolatdungun'
 
 today = datetime.datetime.today()
 tomorrow = today + datetime.timedelta(days=1)
@@ -385,6 +397,20 @@ def peliharadata():
     exec_menu(choice)
     return
     
+def waktusolatdungun():
+    u = Waktusolatdungun.select().where(Waktusolatdungun.tarikh==harini)
+    print "Waktu Solat %s" % harini
+    print "="*20
+    for i in u:
+        print "Imsaak # "+str(i.imsak)+"\nSubuh  # "+i.subuh+"\nZohor  # "+i.zohor+\
+            "\nAsar   # "+i.asar+"\nMaghrib# "+i.maghrib+"\nIsyak  # "+i.isyak
+    print "="*20
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+    
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
     tahunini = int(datetime.datetime.now().year)
@@ -426,6 +452,7 @@ menu_actions = {
     'mi': masukingat,
     'sp': semakperkara,
     'st': semaktarikh,
+    'ws': waktusolatdungun,
     '9': back,
     'q': exit,
 }
