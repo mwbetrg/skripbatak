@@ -22,8 +22,7 @@ import calendar
 import smtplib
 import getpass
 import sqlite3
-import androidhelper
-droid = androidhelper.Android()
+
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 from email.MIMEBase import MIMEBase
@@ -702,6 +701,15 @@ def peliharadata():
     exec_menu(choice)
     return
 
+def menulist():
+    for key, value in menu_actions.iteritems():
+        print str(key)+" : "+str(value)
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return    
+
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
     tahunini = int(datetime.datetime.now().year)
@@ -737,6 +745,7 @@ menu_actions = {
     'bu':  peliharadata,
     'co': buildstatistics,
     'it': idiomtomorrow,
+    'm': menulist,
     'se': sendingwordandidioms,
     'sqfb': searchquestionsfb,
     'sqto': searchquestionsfbtopicid,
