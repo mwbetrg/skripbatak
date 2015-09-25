@@ -106,7 +106,11 @@ class Waktusolatdungun(BaseModel):
 
 today = datetime.datetime.today()
 tomorrow = today + datetime.timedelta(days=1)
+dayaftertomorrow = today + datetime.timedelta(days=2)
+nextweek = today + datetime.timedelta(days=7)
 esok = tomorrow.strftime("%Y%m%d")
+lusa = dayaftertomorrow.strftime("%Y%m%d")
+minggudepan = nextweek.strftime("%Y%m%d")
  
 tahunini = datetime.datetime.today().year
 bulanini = today.strftime("%Y%m")
@@ -254,7 +258,13 @@ def semakperkara():
 
 def masukingat():
     tarikh = raw_input("Masukkan tarikh: \n")
-    if tarikh == "":
+    if tarikh =="e":
+       tarikh = esok
+    elif tarikh =="l" :
+        tarikh = lusa
+    elif tarikh == "md" :
+        tarikh = minggudepan
+    elif tarikh == "":
         tarikh = today.strftime("%Y%m%d")
     else:
         tarikh = tarikh
