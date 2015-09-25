@@ -215,6 +215,17 @@ def addword():
     kata = raw_input("Enter new word: \n")
     kata = kata.strip().lower()
     jenis = raw_input("Enter the part of speech: \n")
+    if jenis == "n" :
+        jenis = "noun"
+    elif jenis == "v" :
+        jenis = "verb" 
+    elif jenis == "adj" :
+        jenis = "adjective"
+    elif jenis == "adv" :
+        jenis = "adverb"
+    else:
+        jenis = jenis
+    print jenis 
     makna = raw_input("Enter the meaning: \n")
     makna = makna.strip().lower()
     ayat = raw_input("Enter the sentence [identify textcolor with *word*] :\n")
