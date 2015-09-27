@@ -108,9 +108,11 @@ today = datetime.datetime.today()
 tomorrow = today + datetime.timedelta(days=1)
 dayaftertomorrow = today + datetime.timedelta(days=2)
 nextweek = today + datetime.timedelta(days=7)
+yesterday = today - datetime.timedelta(days=1)
 esok = tomorrow.strftime("%Y%m%d")
 lusa = dayaftertomorrow.strftime("%Y%m%d")
 minggudepan = nextweek.strftime("%Y%m%d")
+semalam = yesterday.strftime("%Y%m%d")
  
 tahunini = datetime.datetime.today().year
 bulanini = today.strftime("%Y%m")
@@ -125,7 +127,7 @@ menu_actions  = {}
 # Main menu
 def main_menu():
     os.system('clear')
-    
+    waktusolatdungun()
     print ":: Hoye ::\n"
     print "Sila pilih menu yang dikehendaki:"
     print "1. Menu 1"
@@ -189,6 +191,8 @@ def masuksoru():
     tarikh = raw_input("Masukkan tarikh: \n")
     if tarikh == "":
         tarikh = today.strftime("%Y%m%d")
+    elif tarikh == "s" :
+        tarikh = semalam         
     else:
         tarikh = tarikh
     print tarikh
