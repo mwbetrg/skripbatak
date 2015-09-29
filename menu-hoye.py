@@ -20,6 +20,8 @@ import datetime
 import time
 import calendar
 import sqlite3
+import gzip
+import shutil
 from peewee import *
 
 if os.path.exists('/storage/extSdCard'):
@@ -411,6 +413,16 @@ def peliharadata():
     exec_menu(choice)
     return
     
+def hantarsalinan():
+    with open(backupdir+'dump-hoye-'+harini+'.sql', 'rb') as f_in, gzip.open(backupdir+'dump-hoye-'+harini+'.sql.gz', 'wb') as f_out :
+        shutil.copyfileobj(f_in, f_out)
+    print "="*20
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return        
+        
 def waktusolatdungun():
     u = Waktusolatdungun.select().where(Waktusolatdungun.tarikh==harini)
     print "Waktu Solat %s" % harini
@@ -469,6 +481,7 @@ menu_actions = {
     'ckd': cariingatk2,
     'cv': calendarview,
     'ho': masukhoye,
+    'hs' : hantarsalinan,
     'hu': masukhutang,
     'ms': masuksoru,
     'm': menulist,
