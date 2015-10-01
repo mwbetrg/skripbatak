@@ -22,7 +22,15 @@ import calendar
 import sqlite3
 import gzip
 import shutil
+import ftplib
+import ConfigParser
 from peewee import *
+
+config = ConfigParser.ConfigParser()
+config.read("/storage/extSdCard/batak.cfg")
+username = config.get('peti', 'pengguna')
+password = config.get('peti' ,'masuk')
+laman = config.get('peti' ,'url')
 
 if os.path.exists('/storage/extSdCard'):
     database = SqliteDatabase('/storage/extSdCard/mydb/9510305.sqlite', **{})
@@ -414,8 +422,14 @@ def peliharadata():
     return
     
 def hantarsalinan():
-    with open(backupdir+'dump-hoye-'+harini+'.sql', 'rb') as f_in, gzip.open(backupdir+'dump-hoye-'+harini+'.sql.gz', 'wb') as f_out :
+    failhantar = backupdir+'dump-hoye-'+harini+'.sql'
+    with open(failhantar, 'rb') as f_in, gzip.open(failhantar+'.gz', 'wb') as f_out :
         shutil.copyfileobj(f_in, f_out)
+    ftp = ftplib.FTP(laman)
+    ftp.login(username, password)
+    ftp.cwd('dbbackup') 
+    ftp.storbinary("STOR "+failhantar+'.gz',open(failhantar+'.gz','rb'), 1024)
+    ftp.close()
     print "="*20
     print "9. Back"
     print "0. Quit" 

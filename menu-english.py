@@ -22,6 +22,9 @@ import calendar
 import smtplib
 import getpass
 import sqlite3
+import gzip
+import shutil
+import ConfigParser
 
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
@@ -30,6 +33,10 @@ from email import encoders
 import ConfigParser
 from peewee import *
 
+config = ConfigParser.ConfigParser()
+config.read("/storage/extSdCard/batak.cfg")
+username = config.get('surat', 'pengguna')
+password = config.get('surat' ,'masuk')
 
 #-----------------------------------------------------------------------    
 
@@ -639,8 +646,10 @@ def sendingwordandidioms():
     filenameiotd = "iotd-"+tarikh+".pdf.jpg" 
     fullpathfilenameiotd = sdiriotd+"iotd-"+tarikh+".pdf.jpg"    
     
-    fromaddr = raw_input("Enter gmail username: \n")
-    masuk = getpass.getpass("Enter password: \n")
+    fromaddr = username
+    #fromaddr = raw_input("Enter gmail username: \n")
+    masuk = password 
+    #masuk = getpass.getpass("Enter password: \n")
     toaddr = "nege725saze@post.wordpress.com"
     server01 = smtplib.SMTP('smtp.gmail.com' ,587 )
     server02 = smtplib.SMTP('smtp.gmail.com' ,587 )
@@ -721,6 +730,16 @@ def menulist():
     exec_menu(choice)
     return    
 
+def hantarsalinan():
+    with open(backupdir+'dump-english-'+harini+'.sql', 'rb') as f_in, gzip.open(backupdir+'dump-english-'+harini+'.sql.gz', 'wb') as f_out :
+        shutil.copyfileobj(f_in, f_out)
+    print "="*20
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
     tahunini = int(datetime.datetime.now().year)
@@ -755,6 +774,7 @@ menu_actions = {
     'aweb': addweburl,
     'bu':  peliharadata,
     'co': buildstatistics,
+    'hs': hantarsalinan,
     'it': idiomtomorrow,
     'm': menulist,
     'se': sendingwordandidioms,
