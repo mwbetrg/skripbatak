@@ -423,6 +423,7 @@ def peliharadata():
     
 def hantarsalinan():
     failhantar = backupdir+'dump-hoye-'+harini+'.sql'
+    #failhantar = 'dump-hoye-'+harini+'.sql'
     with open(failhantar, 'rb') as f_in, gzip.open(failhantar+'.gz', 'wb') as f_out :
         shutil.copyfileobj(f_in, f_out)
     ftp = ftplib.FTP(laman)
