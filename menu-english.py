@@ -715,6 +715,10 @@ def peliharadata():
     with open(backupdir+'dump-english-'+harini+'.sql', 'w') as f:
         for line in con.iterdump():
             f.write('%s\n' % line)
+    with open(backupdir+'dump-english-'+harini+'.sql', 'rb') as f_in, gzip.open(backupdir+'dump-english-'+harini+'.sql.gz', 'wb') as f_out :
+        shutil.copyfileobj(f_in, f_out)
+    failhantar = backupdir+'dump-english-'+harini+'.sql'
+    os.remove(failhantar)
     print "9. Back"
     print "0. Quit" 
     choice = raw_input(" >>  ")

@@ -415,6 +415,10 @@ def peliharadata():
     with open(backupdir+'dump-hoye-'+harini+'.sql', 'w') as f:
         for line in con.iterdump():
             f.write('%s\n' % line)
+    failhantar = backupdir+'dump-hoye-'+harini+'.sql'
+    with open(failhantar, 'rb') as f_in, gzip.open(failhantar+'.gz', 'wb') as f_out :
+        shutil.copyfileobj(f_in, f_out)
+    os.remove(failhantar)
     print "9. Back"
     print "0. Quit" 
     choice = raw_input(" >>  ")
@@ -426,11 +430,11 @@ def hantarsalinan():
     #failhantar = 'dump-hoye-'+harini+'.sql'
     with open(failhantar, 'rb') as f_in, gzip.open(failhantar+'.gz', 'wb') as f_out :
         shutil.copyfileobj(f_in, f_out)
-    ftp = ftplib.FTP(laman)
-    ftp.login(username, password)
-    ftp.cwd('dbbackup') 
-    ftp.storbinary("STOR "+failhantar+'.gz',open(failhantar+'.gz','rb'), 1024)
-    ftp.close()
+    #ftp = ftplib.FTP(laman)
+    #ftp.login(username, password)
+    #ftp.cwd('dbbackup') 
+    #ftp.storbinary("STOR "+failhantar+'.gz',open(failhantar+'.gz','rb'), 1024)
+    #ftp.close()
     print "="*20
     print "9. Back"
     print "0. Quit" 
