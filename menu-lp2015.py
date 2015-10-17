@@ -645,6 +645,14 @@ def hantarsalinan():
     exec_menu(choice)
     return
 
+def menulist():
+    for key, value in menu_actions.iteritems():
+        print str(key)+" : "+str(value)
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
 
 def calendarview():
     bulan = raw_input("\nMasukkan bulan [MM]: \n")
@@ -1401,6 +1409,7 @@ menu_actions = {
     'cv': calendarview,
     'dl': deletelp2015id,
     'hs': hantarsalinan,
+    'm': menulist,
     'mb': masuklessonplanbank,
     'mn': masuknota,
     'pl': pindahbankkelp2015,
