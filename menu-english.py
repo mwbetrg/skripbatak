@@ -410,6 +410,58 @@ def writeword():
     exec_menu(choice)
     return
 
+# Write Word Tomorrow
+
+def writewordtomorrow():
+    tarikh = (tomorrow.strftime("%Y%m%d"))
+    sdir = "/storage/extSdCard/texdocs/wotd/"
+    failtex = sdir+"wotd-"+tarikh+".tex"
+    failkeluar = open(failtex, "w")  
+    print tarikh
+    w = Wotd.select().where(Wotd.date == tarikh)
+
+    print >>failkeluar,"\documentclass[12pt,a5paper]{article}\n\
+    \usepackage{palatino}\n\
+    \usepackage{nopageno}\n\
+    \usepackage{floatflt}\n\
+    \usepackage[top=1.5cm,bottom=2cm, left=1.5cm,right=1.5cm]{geometry}\n\
+    \usepackage{pdflscape,soul}\n\
+    \usepackage{pifont}\n\
+    \usepackage{graphicx}\n\
+    \usepackage{xcolor}\n\
+    \setlength\parindent{0pt}\n\n\
+    \\begin{document}\n\n\
+    \\begin{landscape}\n\
+    \\Huge\n\
+    \\centerline{\\textcolor{orange}{\\so{WORD(S) OF THE DAY}}}\n\
+    \\medskip\n\
+    \\begin{center}\n"
+    for i in w:
+        print i.word+"\n"+i.meaning+"\n"+i.sentence
+        print >>failkeluar,"\\textbf{\\so{%s}} \n\n \\medskip" % i.word
+        print >>failkeluar,"\\begin{minipage}{14cm}  \\textcolor{magenta}{[%s]}  \\textit{%s} " \
+        %  (i.part, i.meaning)
+        print >>failkeluar,"\\end{minipage} \n\n\
+        \\medskip \n\
+        \\begin{minipage}{14cm}\n\
+        \\begin{center}\n"
+        print >>failkeluar,"\\texttt{%s}\n\n"   % i.sentence
+        print >>failkeluar,"\\end{center} \\end{minipage}\n\n\
+        \\vfill\n\n\
+        \\includegraphics[scale=0.5]{ornamental-flower-horizontal.jpg} \
+        \\includegraphics[scale=0.5]{ornamental-flower-horizontal.jpg}\n\
+        \\end{center}\n\n\
+        \\end{landscape}\n\n\
+        \\end{document}"
+    failkeluar.close()
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
+
+
 def writeidiom():
     tarikh = (time.strftime("%Y%m%d"))
 
@@ -460,6 +512,58 @@ def writeidiom():
     choice = raw_input(" >>  ")
     exec_menu(choice)
     return
+
+def writeidiomtomorrow():
+    tarikh = (tomorrow.strftime("%Y%m%d"))
+
+    failtex = "/storage/extSdCard/texdocs/iotd/iotd-"+tarikh+".tex"
+    failkeluar = open(failtex, "w")  
+    reload(sys) 
+    sys.setdefaultencoding('utf8')
+    print tarikh
+
+    tarikh = (tomorrow.strftime("%Y%m%d"))
+    sdir = "/storage/extSdCard/texdocs/iotd/"
+    failtex = sdir+"iotd-"+tarikh+".tex"
+    failkeluar = open(failtex, "w")  
+
+    w = Iotd.select().where(Iotd.date == tarikh)
+
+    print >>failkeluar,"\documentclass[12pt,a5paper]{article}\n\
+    \usepackage{palatino}\n\
+    \usepackage{nopageno}\n\
+    \usepackage{floatflt}\n\
+    \usepackage[top=3.3cm,bottom=3.3cm, left=0.3cm,right=0.3cm]{geometry}\n\
+    \usepackage{pdflscape,soul}\n\
+    \usepackage{pifont}\n\
+    \usepackage{graphicx}\n\
+    \usepackage{xcolor}\n\
+    \setlength\parindent{0pt}\n\n\
+    \\begin{document}\n\n\
+    \\begin{landscape}\n\
+    \\Huge\n\
+    \\centerline{\\textcolor{orange}{\\so{IDIOM OF THE DAY}}}\n\
+    \\medskip\n\
+    \\begin{center}\n"
+    for i in w:
+        print i.idiom, i.meaning, i.sentence+"\n"
+        print >>failkeluar,"\\textbf{\\so{%s}} \n\n \\medskip" % i.idiom
+        print >>failkeluar," \\textit{%s} "   %   i.meaning
+        print >>failkeluar,"\\medskip \n"
+        print >>failkeluar,"\\texttt{%s}\n\n"   % i.sentence
+        print >>failkeluar,"\\vfill\n\n"
+        print >>failkeluar,"\\textcolor{red}{\dingline{105}}\n\n\
+    \\end{center}\n\n\
+    \\end{landscape}\n\
+    \\end{document}"
+
+    failkeluar.close()
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
 
 def searchword():
     reload(sys) 
@@ -706,6 +810,81 @@ def sendingwordandidioms():
     exec_menu(choice)
     return
     
+def sendingwordandidiomstomorrow():
+
+    today = datetime.datetime.today()
+    adayafter = today + datetime.timedelta(days=1)
+    tarikh = (time.strftime("%Y-%m-%d"))
+    esok = adayafter.strftime("%Y%m%d")
+
+    sdirwotd = "/storage/extSdCard/texdocs/wotd/"
+    filenamewotd = "wotd-"+esok+".pdf.jpg" 
+    fullpathfilenamewotd = sdirwotd+"wotd-"+esok+".pdf.jpg"    
+
+    sdiriotd = "/storage/extSdCard/texdocs/iotd/"
+    filenameiotd = "iotd-"+esok+".pdf.jpg" 
+    fullpathfilenameiotd = sdiriotd+"iotd-"+esok+".pdf.jpg"    
+    
+    fromaddr = username
+    #fromaddr = raw_input("Enter gmail username: \n")
+    masuk = password 
+    #masuk = getpass.getpass("Enter password: \n")
+    toaddr = "nege725saze@post.wordpress.com"
+    server01 = smtplib.SMTP('smtp.gmail.com' ,587 )
+    server02 = smtplib.SMTP('smtp.gmail.com' ,587 )
+
+    msgwotd = MIMEMultipart()
+    msgwotd['From' ] = fromaddr
+    msgwotd['To' ] = toaddr
+    msgwotd['Subject' ] = "Word Of The Day"
+    bodywotd = "[category word] \n\
+    [tags wotd] \n\
+    [status publish] \n\
+    [delay "+tarikh+" 22:00:00] \n\
+    [end]"
+    
+    msgiotd = MIMEMultipart()
+    msgiotd['From' ] = fromaddr
+    msgiotd['To' ] = toaddr
+    msgiotd['Subject' ] = "Idiom Of The Day"
+    bodyiotd = "[category idiom] \n\
+    [tags iotd] \n\
+    [status publish] \n\
+    [delay "+tarikh+" 22:05:00] \n\
+    [end]"
+ 
+    
+    msgwotd.attach(MIMEText(bodywotd, 'plain' ))
+    attachmentwotd = open(fullpathfilenamewotd , "rb")
+    partwotd = MIMEBase('application' , 'octet-stream' )
+    partwotd.set_payload((attachmentwotd).read())
+    encoders.encode_base64(partwotd)
+    partwotd.add_header('Content-Disposition' , "attachment; filename=%s" % filenamewotd)
+    msgwotd.attach(partwotd)
+    server01.starttls()
+    server01.login(fromaddr , masuk)
+    textwotd = msgwotd.as_string()
+    server01.sendmail(fromaddr , toaddr , textwotd)
+    server01.quit()
+
+    msgiotd.attach(MIMEText(bodyiotd, 'plain' ))
+    attachmentiotd = open(fullpathfilenameiotd , "rb")
+    partiotd = MIMEBase('application' , 'octet-stream' )
+    partiotd.set_payload((attachmentiotd).read())
+    encoders.encode_base64(partiotd)
+    partiotd.add_header('Content-Disposition' , "attachment; filename=%s" % filenameiotd)
+    msgiotd.attach(partiotd)
+    server02.starttls()
+    server02.login(fromaddr , masuk)
+    textiotd = msgiotd.as_string()
+    server02.sendmail(fromaddr , toaddr , textiotd)
+    server02.quit()
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
 #-----------------------------------------------------------------------    
 
 def peliharadata():
@@ -782,6 +961,7 @@ menu_actions = {
     'it': idiomtomorrow,
     'm': menulist,
     'se': sendingwordandidioms,
+    'set': sendingwordandidiomstomorrow,
     'sqfb': searchquestionsfb,
     'sqto': searchquestionsfbtopicid,
     'sw': searchword,
@@ -792,7 +972,9 @@ menu_actions = {
     'wt': wordtomorrow,
     'wb': writeboth,
     'wi': writeidiom,
+    'wit': writeidiomtomorrow,
     'ww': writeword,
+    'wwt' : writewordtomorrow,
     '9': back,
     'q': exit,
 }
