@@ -817,11 +817,13 @@ def sendingwordandidiomstomorrow():
     tarikh = (time.strftime("%Y-%m-%d"))
     esok = adayafter.strftime("%Y%m%d")
 
-    sdirwotd = "/storage/extSdCard/texdocs/wotd/"
+    #sdirwotd = "/storage/extSdCard/texdocs/wotd/"
+    sdirwotd = "/storage/extSdCard/"
     filenamewotd = "wotd-"+esok+".pdf.jpg" 
     fullpathfilenamewotd = sdirwotd+"wotd-"+esok+".pdf.jpg"    
 
-    sdiriotd = "/storage/extSdCard/texdocs/iotd/"
+    #sdiriotd = "/storage/extSdCard/texdocs/iotd/"
+    sdiriotd = "/storage/extSdCard/"
     filenameiotd = "iotd-"+esok+".pdf.jpg" 
     fullpathfilenameiotd = sdiriotd+"iotd-"+esok+".pdf.jpg"    
     
