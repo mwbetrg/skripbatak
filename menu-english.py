@@ -146,10 +146,12 @@ database.connect()
 #-----------------------------------------------------------------------    
 today = datetime.datetime.today()
 tomorrow = today + datetime.timedelta(days=1)
+nextmonth = today + datetime.timedelta(days=30)
 esok = tomorrow.strftime("%Y%m%d")
  
 tahunini = datetime.datetime.today().year
 bulanini = today.strftime("%Y%m")
+bulandepan = nextmonth.strftime("%Y%m")
 harini = today.strftime("%Y%m%d")
 # Main definition - constants
 menu_actions  = {}  
@@ -241,7 +243,9 @@ def addword():
     print ayat
     print '='*30
     tarikh = raw_input("Enter the date [YYYYMMDD]:\n")
-    if tarikh == "":
+    if tarikh == "nm":
+        hb = bulandepan
+    elif tarikh == "":
         hb = bulanini
     else:
         hb = tarikh
@@ -267,7 +271,9 @@ def addidiom():
     print ayat
     print '='*30
     tarikh = raw_input("Enter the date [YYYYMMDD]:\n")
-    if tarikh == "":
+    if tarikh == "nm":
+        hb = bulandepan
+    elif tarikh == "":
         hb = bulanini
     else:
         hb = tarikh
