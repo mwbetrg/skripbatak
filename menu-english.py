@@ -380,6 +380,7 @@ def writeword():
     \usepackage{palatino}\n\
     \usepackage{nopageno}\n\
     \usepackage{floatflt}\n\
+    \usepackage{tikz}\n\
     \usepackage[top=1.5cm,bottom=2cm, left=1.5cm,right=1.5cm]{geometry}\n\
     \usepackage{pdflscape,soul}\n\
     \usepackage{pifont}\n\
@@ -404,8 +405,10 @@ def writeword():
         print >>failkeluar,"\\texttt{%s}\n\n"   % i.sentence
         print >>failkeluar,"\\end{center} \\end{minipage}\n\n\
         \\vfill\n\n\
-        \\includegraphics[scale=0.5]{ornamental-flower-horizontal.jpg} \
-        \\includegraphics[scale=0.5]{ornamental-flower-horizontal.jpg}\n\
+        \\begin{tikzpicture}\n\
+\\draw [fill=red,ultra thick, red] (0,0) rectangle (1,1); \\draw [fill=red,ultra thick,red] (2,0) rectangle (3,1); \\draw [fill=red,ultra thick,pink] (4,0) rectangle (5,1);\\draw [fill=red,ultra thick,red] (6,0) rectangle (7,1);\\draw [fill=red,ultra thick,red] (8,0) rectangle (9,1);\n\
+\\draw [fill=pink] (10,0) rectangle (11,1);\n\
+\\end{tikzpicture}\n\
         \\end{center}\n\n\
         \\end{landscape}\n\n\
         \\end{document}"
@@ -430,6 +433,7 @@ def writewordtomorrow():
     \usepackage{palatino}\n\
     \usepackage{nopageno}\n\
     \usepackage{floatflt}\n\
+    \usepackage{tikz}\n\
     \usepackage[top=1.5cm,bottom=2cm, left=1.5cm,right=1.5cm]{geometry}\n\
     \usepackage{pdflscape,soul}\n\
     \usepackage{pifont}\n\
@@ -454,8 +458,10 @@ def writewordtomorrow():
         print >>failkeluar,"\\texttt{%s}\n\n"   % i.sentence
         print >>failkeluar,"\\end{center} \\end{minipage}\n\n\
         \\vfill\n\n\
-        \\includegraphics[scale=0.5]{ornamental-flower-horizontal.jpg} \
-        \\includegraphics[scale=0.5]{ornamental-flower-horizontal.jpg}\n\
+         \\begin{tikzpicture}\n\
+\\draw [fill=red,ultra thick, red] (0,0) rectangle (1,1); \\draw [fill=red,ultra thick,red] (2,0) rectangle (3,1); \\draw [fill=red,ultra thick,pink] (4,0) rectangle (5,1);\\draw [fill=red,ultra thick,red] (6,0) rectangle (7,1);\\draw [fill=red,ultra thick,red] (8,0) rectangle (9,1);\n\
+\\draw [fill=pink] (10,0) rectangle (11,1);\n\
+\\end{tikzpicture}\n\
         \\end{center}\n\n\
         \\end{landscape}\n\n\
         \\end{document}"
@@ -748,11 +754,13 @@ def sendingwordandidioms():
     tarikh = (time.strftime("%Y%m%d"))
     semalam = adaybefore.strftime("%Y-%m-%d")
 
-    sdirwotd = "/storage/extSdCard/texdocs/wotd/"
+    sdirwotd = "/storage/extSdCard/"
+    #sdirwotd = "/storage/extSdCard/texdocs/wotd/"
     filenamewotd = "wotd-"+tarikh+".pdf.jpg" 
     fullpathfilenamewotd = sdirwotd+"wotd-"+tarikh+".pdf.jpg"    
 
-    sdiriotd = "/storage/extSdCard/texdocs/iotd/"
+    sdiriotd = "/storage/extSdCard/"
+    #sdiriotd = "/storage/extSdCard/texdocs/iotd/"
     filenameiotd = "iotd-"+tarikh+".pdf.jpg" 
     fullpathfilenameiotd = sdiriotd+"iotd-"+tarikh+".pdf.jpg"    
     
