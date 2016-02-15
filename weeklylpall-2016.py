@@ -136,7 +136,8 @@ mon01 = Lessonplan2016.create(tingkatan="6J4-UPM",\
                               date=datemon,\
                               timestart="0900",\
                               timeend="1020",\
-                              duration="80",\ theme="-",\
+                              duration="80",\
+                              theme="-",\
                               topic="-",\
                               lo1="-",\
                               lo2="-",\
