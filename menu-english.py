@@ -243,7 +243,9 @@ def addword():
     print ayat
     print '='*30
     tarikh = raw_input("Enter the date [YYYYMMDD]:\n")
-    if tarikh == "nm":
+    if tarikh == "e":
+        hb = esok
+    elif tarikh == "nm":
         hb = bulandepan
     elif tarikh == "":
         hb = bulanini
@@ -271,7 +273,9 @@ def addidiom():
     print ayat
     print '='*30
     tarikh = raw_input("Enter the date [YYYYMMDD]:\n")
-    if tarikh == "nm":
+    if tarikh == "e":
+        hb = esok
+    elif tarikh == "nm":
         hb = bulandepan
     elif tarikh == "":
         hb = bulanini
