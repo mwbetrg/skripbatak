@@ -245,7 +245,7 @@ def addword():
     tarikh = raw_input("Enter the date [YYYYMMDD]:\n")
     if tarikh == "hn":
         hb = harini
-    if tarikh == "e":
+    elif tarikh == "e":
         hb = esok
     elif tarikh == "nm":
         hb = bulandepan
@@ -277,7 +277,7 @@ def addidiom():
     tarikh = raw_input("Enter the date [YYYYMMDD]:\n")
     if tarikh == "hn":
         hb = harini
-    if tarikh == "e":
+    elif tarikh == "e":
         hb = esok
     elif tarikh == "nm":
         hb = bulandepan
