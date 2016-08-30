@@ -1384,6 +1384,7 @@ menu_actions = {
     'slto': searchlptopic,
     'slth': searchlptheme,
     'ww': writeweekly,
+    'wwf6': writeweeklyf6,
     '9': back,
     'q': exit,
 }
