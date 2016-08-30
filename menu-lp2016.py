@@ -1301,6 +1301,60 @@ def writeweekly():
     exec_menu(choice)
     return 
 
+def writeweeklyf6():
+    week = raw_input("Masukkan nombor minggu: \n")
+
+    lpweeksun = Lessonplan2016.get(Lessonplan2016.week == week)
+
+    datesun = int(lpweeksun.date)
+
+    #sdir = "/tmp/"
+    sdir = "/storage/extSdCard/lp2016/"
+
+    failtex = sdir+"weekly-week-"+str(week)+"-"+str(datesun)+"-f6.tex"
+    failtexlog = sdir+"weekly"+str(datesun)+".log"
+    failtexaux = sdir+"weekly"+str(datesun)+".aux"
+    failtexpdf = sdir+"weekly"+str(datesun)+".pdf"
+    failkeluar = open(failtex, "w")  
+
+    tdatemon = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=1)
+    tdatetue = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=2)
+    tdatewed = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=3)
+    tdatethu = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=4)
+
+    datemon = tdatemon.strftime('%Y%m%d')
+    datetue = tdatetue.strftime('%Y%m%d')
+    datewed = tdatewed.strftime('%Y%m%d')
+    datethu = tdatethu.strftime('%Y%m%d')                             
+
+    print datesun
+
+    print >>failkeluar,"\\documentclass[a4paper,12pt]{article}\n\
+    \\usepackage{palatino}\n\
+    \\usepackage{fancyvrb,pifont,enumerate,url,graphicx,tabularx,longtable,quotes,setspace,floatflt,umoline,rotating,soul}\n\
+    \\usepackage[top=1.8cm,bottom=2cm,left=1.5cm,right=1.5cm]{geometry}\n\
+    \\usepackage{fancyhdr} \\pagestyle{fancy}\n"
+    print >>failkeluar,"\\usepackage{nopageno}"
+
+    print >>failkeluar,"\\usepackage{onepagem}\n\
+    \\usepackage{pstricks}\n\
+    \\setlength\\parindent{0pt}\n\
+    \\begin{document}\n"
+
+
+    print >>failkeluar,"Tandatangan Pengetua\n"
+    print >>failkeluar,"\\textit{Principal's Signature}"
+
+    print >>failkeluar,"\\end{document}\n"
+
+    failkeluar.close()
+    print "9. Kembali"
+    print "0. Keluar"
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return 
+
+
 # Back to main menu
 def back():
     menu_actions['main_menu']()
