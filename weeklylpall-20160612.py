@@ -107,9 +107,9 @@ datethu = tdatethu.strftime('%Y%m%d')
 
 sun01 = Lessonplan2016.create(tingkatan="6J4-UPM",\
                               date=int(datesun),\
-                              timestart="1250",\
-                              timeend="1410",\
-                              duration="80",\
+                              timestart="1050",\
+                              timeend="1250",\
+                              duration="120",\
                               theme="-",\
                               topic="-",\
                               lo1="-",\
@@ -132,7 +132,7 @@ sun01 = Lessonplan2016.create(tingkatan="6J4-UPM",\
 # Monday
 
 
-mon01 = Lessonplan2016.create(tingkatan="6J4-UPM",\
+mon01 = Lessonplan2016.create(tingkatan="6S4-UPM",\
                               date=datemon,\
                               timestart="0740",\
                               timeend="0940",\
