@@ -905,6 +905,73 @@ def sendingwordandidiomstomorrow():
     server02.quit()
 
 
+def sendingwordandidiomsblogspot():
+
+    today = datetime.datetime.today()
+    adayafter = today + datetime.timedelta(days=1)
+    tarikh = (time.strftime("%Y-%m-%d"))
+    esok = adayafter.strftime("%Y%m%d")
+
+    sdirwotd = "/storage/extSdCard/"
+    filenamewotd = "wotd-"+harini+".pdf.jpg" 
+    fullpathfilenamewotd = sdirwotd+"wotd-"+harini+".pdf.jpg"    
+
+    sdiriotd = "/storage/extSdCard/"
+    filenameiotd = "iotd-"+harini+".pdf.jpg" 
+    fullpathfilenameiotd = sdiriotd+"iotd-"+harini+".pdf.jpg"    
+    
+    fromaddr = username
+    masuk = password 
+    toaddr = "sirwafi.xwf01@blogger.com"
+    server01 = smtplib.SMTP('smtp.gmail.com' ,587 )
+    server02 = smtplib.SMTP('smtp.gmail.com' ,587 )
+
+    msgwotd = MIMEMultipart()
+    msgwotd['From' ] = fromaddr
+    msgwotd['To' ] = toaddr
+    msgwotd['Subject' ] = "Word Of The Day"
+    bodywotd = "Word Of The Day #wotd"
+    
+    msgiotd = MIMEMultipart()
+    msgiotd['From' ] = fromaddr
+    msgiotd['To' ] = toaddr
+    msgiotd['Subject' ] = "Idiom Of The Day"
+    bodyiotd = "Idiom Of The Day #iotd"
+ 
+    
+    msgwotd.attach(MIMEText(bodywotd, 'plain' ))
+    attachmentwotd = open(fullpathfilenamewotd , "rb")
+    partwotd = MIMEBase('application' , 'octet-stream' )
+    partwotd.set_payload((attachmentwotd).read())
+    encoders.encode_base64(partwotd)
+    partwotd.add_header('Content-Disposition' , "attachment; filename=%s" % filenamewotd)
+    msgwotd.attach(partwotd)
+    server01.starttls()
+    server01.login(fromaddr , masuk)
+    textwotd = msgwotd.as_string()
+    server01.sendmail(fromaddr , toaddr , textwotd)
+    server01.quit()
+
+    msgiotd.attach(MIMEText(bodyiotd, 'plain' ))
+    attachmentiotd = open(fullpathfilenameiotd , "rb")
+    partiotd = MIMEBase('application' , 'octet-stream' )
+    partiotd.set_payload((attachmentiotd).read())
+    encoders.encode_base64(partiotd)
+    partiotd.add_header('Content-Disposition' , "attachment; filename=%s" % filenameiotd)
+    msgiotd.attach(partiotd)
+    server02.starttls()
+    server02.login(fromaddr , masuk)
+    textiotd = msgiotd.as_string()
+    server02.sendmail(fromaddr , toaddr , textiotd)
+    server02.quit()
+
+    print "9. Back"
+    print "0. Quit" 
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
+#-----------------------------------------------------------------------    
 
 def sendingwordandidiomstomorrowblogspot():
 
@@ -1049,6 +1116,7 @@ menu_actions = {
     'm': menulist,
     'se': sendingwordandidioms,
     'set': sendingwordandidiomstomorrow,
+    'seb': sendingwordandidiomsblogspot,
     'setb': sendingwordandidiomstomorrowblogspot,
     'sqfb': searchquestionsfb,
     'sqto': searchquestionsfbtopicid,
