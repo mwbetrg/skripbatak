@@ -26,7 +26,7 @@ import calendar
 #if os.path.exists('/storage/extSdCard'):
 #    db = SqliteDatabase('/storage/extSdCard/mydb/lessonplan2010.db', **{})
 if os.path.exists('/storage/extSdCard'):
-    db = SqliteDatabase('/storage/extSdCard/vimwiki/db/lessonplan2010.db', **{})
+    db = SqliteDatabase('/storage/extSdCard/Android/data/com.termux/files/vimwiki/db/lessonplan2010.db',**{})
 else:
     db = SqliteDatabase('/usb/termux/termux-git/db/lessonplan2010.db', **{})
 
