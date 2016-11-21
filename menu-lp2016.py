@@ -24,7 +24,7 @@ import calendar
 #-----------------------------------------------------------------------    
 
 if os.path.exists('/storage/extSdCard'):
-    db = SqliteDatabase('/storage/extSdCard/mydb/lessonplan2010.db', **{})
+    db = SqliteDatabase('/storage/extSdCard/Android/data/com.termux/files/vimwiki/db/lessonplan2010.db', **{})
     sdir = '/storage/extSdCard/lp2016/'
 else:
     db = SqliteDatabase('/usb/termux/termux-git/db/lessonplan2010.db', **{})
@@ -1347,17 +1347,18 @@ def writeweeklyf6():
     for i in lpweeksun:
 
         if i.theme.startswith("PEPERIKSAAN"):
-            print >>failkeluar,"\\centerline{%s}\\linebreak" % i.tingkatan
-            print >>failkeluar,"&&&\\\\"
-            print >>failkeluar,"\n\\centerline{%s-%s}&\
-            \\multicolumn{3}{c|}{%s}   \\\\" % (i.timestart,i.timeend,i.theme.upper())
-            print >>failkeluar,"\n& \\multicolumn{3}{c|}{\\textit{%s}}  \\\\ \
-            &&&\\\\" % i.topic 
-            print >>failkeluar,"\n& \\multicolumn{3}{c|}{\\textit{[%s]}} \\\\" % i.lo1
-            print >>failkeluar,"\n& \\multicolumn{3}{c|}{\\textit{%s}}  \\\\" %  i.lo2
-            print >>failkeluar,"\n & \\multicolumn{3}{c|}{\\textit{%s}}  \\\\" % i.lo3
-            print >>failkeluar,"&&& \\\\"
-            print >>failkeluar,"\\hline"
+            print >>failkeluar,"%s \\hfill %s" % (i.tingkatan, i.date)
+            print >>failkeluar,"\\\\"
+            print >>failkeluar,"\n%s-%s\
+            %s   \\\\" % (i.timestart,i.timeend,i.theme.upper())
+            print >>failkeluar,"\n %s \\\\ \
+            \\\\" % i.topic 
+            print >>failkeluar,"\n [%s] \\\\" % i.lo1
+            print >>failkeluar,"\n %s \\\\" %  i.lo2
+            print >>failkeluar,"\n %s  \\\\" % i.lo3
+            print >>failkeluar," \\\\"
+            print >>failkeluar,""
+            print >>failkeluar,"\\newpage"
 
         elif 'Cuti' in i.theme:
             theme = i.theme.upper()
@@ -1435,7 +1436,7 @@ def writeweeklyf6():
             print >>failkeluar,"\\hline\n"
 
         else:
-            print >>failkeluar,"%s" % i.tingkatan
+            print >>failkeluar,"%s \hfill %s" % (i.tingkatan, i.date)
             print >>failkeluar,"\\\\\n"
             print >>failkeluar,"%s-%s Theme / Topic: %s -\
             \\textit{%s}\\\\" %  (i.timestart,i.timeend,i.theme,i.topic)
@@ -1449,9 +1450,10 @@ def writeweeklyf6():
             %s\\\\\n" % (i.activity1,i.activity2)
             print >>failkeluar,"Assimilation : %s\\\\" % i.assimilation
             print >>failkeluar,"Impact/Reflection : \\textit{%s}\\\\\n" % i.impact
-            print >>failkeluar,"\\hline\n"
+            print >>failkeluar,"\n"
+            print >>failkeluar,"\\newpage"
 
-    print >>failkeluar,"\\end{longtable}\n"
+    #print >>failkeluar,"\\end{longtable}\n"
 
 
     print >>failkeluar,"\\vfill"
