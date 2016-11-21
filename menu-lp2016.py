@@ -722,7 +722,6 @@ def writeweekly():
             print >>failkeluar,"&&&\\\\"
             print >>failkeluar,"&&&\\\\"
             print >>failkeluar,"&\\multicolumn{3}{c|}{\\textcolor{blue}{\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}}}\\\\"
-            print >>failkeluar,"\\hline\n"
 
         else:
             print >>failkeluar,"\\centerline{%s}\\linebreak" % i.tingkatan
@@ -739,7 +738,6 @@ def writeweekly():
             %s\\\\\n" % (i.activity1,i.activity2)
             print >>failkeluar,"&Assimilation&:& %s\\\\" % i.assimilation
             print >>failkeluar,"&Impact/Reflection&:& \\textit{%s}\\\\\n" % i.impact
-            print >>failkeluar,"\\hline\n"
 
     print >>failkeluar,"\\end{longtable}\n"
 
@@ -1303,6 +1301,180 @@ def writeweekly():
     exec_menu(choice)
     return 
 
+
+def writeweeklyf6():
+    week = raw_input("Masukkan nombor minggu: \n")
+
+    lpweeksun = Lessonplan2016.select().where(Lessonplan2016.week == week)
+
+    #datesun = int(lpweeksun.date)
+
+
+    failtex = sdir+"weekly-week-"+str(week)+"-"+str(week)+".tex"
+    failtexlog = sdir+"weekly"+str(week)+".log"
+    failtexaux = sdir+"weekly"+str(week)+".aux"
+    failtexpdf = sdir+"weekly"+str(week)+".pdf"
+    failkeluar = open(failtex, "w")  
+
+ #   tdatemon = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=1)
+    #tdatetue = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=2)
+    #tdatewed = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=3)
+ #   tdatethu = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=4)
+
+ #   datemon = tdatemon.strftime('%Y%m%d')
+    #datetue = tdatetue.strftime('%Y%m%d')
+    #datewed = tdatewed.strftime('%Y%m%d')
+ #   datethu = tdatethu.strftime('%Y%m%d')                             
+
+    #print datesun
+
+    print >>failkeluar,"\\documentclass[a4paper,12pt]{article}\n\
+    \\usepackage{palatino}\n\
+    \\usepackage{fancyvrb,pifont,enumerate,url,graphicx,tabularx,longtable,quotes,setspace,floatflt,umoline,rotating,soul}\n\
+    \\usepackage[top=1.8cm,bottom=2cm,left=1.5cm,right=1.5cm]{geometry}\n\
+    \\usepackage{fancyhdr} \\pagestyle{fancy}\n"
+    print >>failkeluar,"\\usepackage{nopageno}"
+
+    print >>failkeluar,"\\usepackage{onepagem}\n\
+    \\usepackage{pstricks}\n\
+    \\setlength\\parindent{0pt}\n\
+    \\begin{document}\n"
+
+    #namahari = time.strftime("%A",time.strptime(str(datesun),"%Y%m%d"))
+    #tarikh_dalam_perkataan = time.strftime("%d %B %Y",time.strptime(str(datesun),"%Y%m%d"))
+
+
+    for i in lpweeksun:
+
+        if i.theme.startswith("PEPERIKSAAN"):
+            print >>failkeluar,"\\centerline{%s}\\linebreak" % i.tingkatan
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"\n\\centerline{%s-%s}&\
+            \\multicolumn{3}{c|}{%s}   \\\\" % (i.timestart,i.timeend,i.theme.upper())
+            print >>failkeluar,"\n& \\multicolumn{3}{c|}{\\textit{%s}}  \\\\ \
+            &&&\\\\" % i.topic 
+            print >>failkeluar,"\n& \\multicolumn{3}{c|}{\\textit{[%s]}} \\\\" % i.lo1
+            print >>failkeluar,"\n& \\multicolumn{3}{c|}{\\textit{%s}}  \\\\" %  i.lo2
+            print >>failkeluar,"\n & \\multicolumn{3}{c|}{\\textit{%s}}  \\\\" % i.lo3
+            print >>failkeluar,"&&& \\\\"
+            print >>failkeluar,"\\hline"
+
+        elif 'Cuti' in i.theme:
+            theme = i.theme.upper()
+            print >>failkeluar,"\\centerline{%s}\\linebreak" % i.tingkatan
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"\n &  \\multicolumn{3}{c|}{\\so{%s}}\
+            \\\\" % theme
+            print >>failkeluar,"\n& \\multicolumn{3}{c|}{\\textit{%s}}  \\\\"\
+            % i.topic
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"\n& \\multicolumn{3}{c|}{\\textit{%s}}\\\\" %\
+            i.lo1
+            print >>failkeluar,"\n& \\multicolumn{3}{c|}{\\textit{%s}}\\\\" % i.lo2
+            print >>failkeluar,"\n& \\multicolumn{3}{c|}{\\textit{%s}}\\\\" % i.lo3
+            print >>failkeluar,"&&& \\\\"
+            print >>failkeluar,"&&&   \\\\"
+            print >>failkeluar,"&&& \\\\"
+            print >>failkeluar,"&&& \\\\"
+            print >>failkeluar,"\\hline\n"
+
+        elif i.theme.startswith("***"):
+            print >>failkeluar,"\\centerline{%s}\\linebreak" % i.tingkatan
+            print >>failkeluar,"&&& \\\\"
+            print >>failkeluar,"\n\\centerline{%s-%s}&\
+            \\multicolumn{3}{c|}{}   \\\\" % (i.timestart,i.timeend) 
+            theme = i.theme.upper()
+            print >>failkeluar,"\n &  \\multicolumn{3}{c|}{%s}\
+            \\\\" % i.theme
+            print >>failkeluar,"\n & \\multicolumn{3}{c|}{\\textit{%s}}  \\\\" %\
+            i.topic
+            print >>failkeluar,"&&& \\\\"
+            print >>failkeluar,"\n & \\multicolumn{3}{c|}{\\textit{%s}} \\\\" % i.lo1
+            print >>failkeluar,"\n & \\multicolumn{3}{c|}{\\textit{%s}} \\\\" % i.lo2
+            print >>failkeluar,"&&& \\\\"
+            print >>failkeluar,"&&& \\\\"
+            print >>failkeluar,"&&& \\\\"
+            print >>failkeluar,"&&& \\\\"
+            print >>failkeluar,"\\hline \n"
+
+        elif i.theme.startswith('---'):
+            theme = i.theme.upper()
+            print >>failkeluar,"\\centerline{%s}\\linebreak" % i.tingkatan
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"\n & \\multicolumn{3}{c|}{%s}\
+            \\\\" % theme
+            print >>failkeluar,"\n& \\multicolumn{3}{c|}{\\textit{%s}} \\\\" %\
+            i.topic
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"\\hline\n"
+
+        elif i.theme.startswith('+++'):
+            theme = i.theme.upper()
+            print >>failkeluar,"\\centerline{%s}\\linebreak & \
+            \\multicolumn{3}{c|}{%s}\\\\"  % (i.tingkatan,theme)
+            print >>failkeluar,"\n\\centerline{%s-%s}&\
+            \\multicolumn{3}{c|}{%s}   \\\\" % (i.timestart,i.timeend,i.topic)
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"\\hline\n"
+
+        elif i.theme.startswith("\ding{90}"):
+            print >>failkeluar,"\\centerline{%s}\\linebreak" % i.tingkatan
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"\n & \\multicolumn{3}{c|}{{\\textcolor{blue}{%s}}}\
+            \\\\" % i.theme
+            print >>failkeluar,"&&&\\\\"
+            tarikh_akhir_cuti_dalam_perkataan =  time.strftime("%d %B %Y",time.strptime(lo2,"%Y%m%d"))
+            print >>failkeluar," & \\multicolumn{3}{c|}{{%s ---- %s}}\\\\" %\
+            (tarikh_dalam_perkataan,tarikh_akhir_cuti_dalam_perkataan)
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"&&&\\\\"
+            print >>failkeluar,"&\\multicolumn{3}{c|}{\\textcolor{blue}{\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}\ding{90}}}\\\\"
+            print >>failkeluar,"\\hline\n"
+
+        else:
+            print >>failkeluar,"%s" % i.tingkatan
+            print >>failkeluar,"\\\\\n"
+            print >>failkeluar,"%s-%s Theme / Topic: %s -\
+            \\textit{%s}\\\\" %  (i.timestart,i.timeend,i.theme,i.topic)
+            print >>failkeluar,"English Learning\
+            objective(s) : Students will be able to:\\\\"
+            print >>failkeluar,"(i) %s\\\\\n" % i.lo1
+            print >>failkeluar,"(ii) %s\\\\\n" % i.lo2
+            print >>failkeluar,"(iii) %s\\\\\n" % i.lo3
+            print >>failkeluar,"Content : %s\\\\\n" % i.content
+            print >>failkeluar,"Activities : \\ding{172} %s, \\ding{173}\
+            %s\\\\\n" % (i.activity1,i.activity2)
+            print >>failkeluar,"Assimilation : %s\\\\" % i.assimilation
+            print >>failkeluar,"Impact/Reflection : \\textit{%s}\\\\\n" % i.impact
+            print >>failkeluar,"\\hline\n"
+
+    print >>failkeluar,"\\end{longtable}\n"
+
+
+    print >>failkeluar,"\\vfill"
+
+    print\
+    >>failkeluar,".........................................\\hspace{8.8cm}Tarikh/\\textit{Date}.........................\n"
+
+    print >>failkeluar,"Tandatangan Pengetua\n"
+    print >>failkeluar,"\\textit{Principal's Signature}"
+
+    print >>failkeluar,"\\newpage"
+
+
+
+    print >>failkeluar,"\\end{document}\n"
+
+    failkeluar.close()
+    print "9. Kembali"
+    print "0. Keluar"
+    choice = raw_input(" >>  ")
+    exec_menu(choice)
+    return
+
 # Back to main menu
 def back():
     menu_actions['main_menu']()
@@ -1332,6 +1504,7 @@ menu_actions = {
     'slto': searchlptopic,
     'slth': searchlptheme,
     'ww': writeweekly,
+    'wwf6': writeweeklyf6,
     '9': back,
     'q': exit,
 }
