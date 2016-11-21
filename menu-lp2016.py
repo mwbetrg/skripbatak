@@ -1340,12 +1340,16 @@ def writeweeklyf6():
     \\setlength\\parindent{0pt}\n\
     \\newcommand{\\tajukatas}\n\
     {\n\
-	\\begin{center}\n\
-	\\textbf{KURSUS PERSEDIAAN UNIVERSITI}\\\\\n\
-SMK TENGKU INTAN ZAHARAH 23000 DUNGUN TERENGGANU\\\\\n\
-\\textbf{\\textit{RANCANGAN PENGAJARAN HARIAN}}\n\
-	\\end{center}\n\
-}\n\
+    \\begin{center}\n\
+    \\begin{minipage}{1cm}\n\
+	\\includegraphics[scale=1.0]{smktiz.jpg}\n\
+    \\end{minipage} \hspace{0.5cm} \\begin{minipage}{13cm}\n\
+	\\small \\textbf{KURSUS PERSEDIAAN UNIVERSITI}\\\\\n\
+    SMK TENGKU INTAN ZAHARAH 23000 DUNGUN TERENGGANU\\\\\n\
+    \\textbf{\\textit{RANCANGAN PENGAJARAN HARIAN}}\n\
+	\\normalsize \\end{minipage}\n\
+     \\end{center}\n\
+    }\n\
     \\begin{document}\n"
 
     #namahari = time.strftime("%A",time.strptime(str(datesun),"%Y%m%d"))
