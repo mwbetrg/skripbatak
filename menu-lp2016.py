@@ -1350,6 +1350,12 @@ def writeweeklyf6():
 	\\normalsize \\end{minipage}\n\
      \\end{center}\n\
     }\n\
+    \\newcommand{\\tajukbawah}\n\
+    {\n\
+   .........................................\\hspace{8.8cm}Tarikh/\\textit{Date}.........................\n\
+    Tandatangan Pengetua\\\\\n\
+    \\textit{Principal's Signature}\n\
+    }\n\
     \\begin{document}\n"
 
     #namahari = time.strftime("%A",time.strptime(str(datesun),"%Y%m%d"))
@@ -1369,8 +1375,8 @@ def writeweeklyf6():
             print >>failkeluar,"\n [%s] \\\\" % i.lo1
             print >>failkeluar,"\n %s \\\\" %  i.lo2
             print >>failkeluar,"\n %s  \\\\" % i.lo3
-            print >>failkeluar," \\\\"
-            print >>failkeluar,""
+            print >>failkeluar,"\\vfill\n"
+            print >>failkeluar,"\\tajukbawah"
             print >>failkeluar,"\\newpage"
 
         elif 'Cuti' in i.theme:
@@ -1464,22 +1470,12 @@ def writeweeklyf6():
             %s\\\\\n" % (i.activity1,i.activity2)
             print >>failkeluar,"Assimilation : %s\\\\" % i.assimilation
             print >>failkeluar,"Impact/Reflection : \\textit{%s}\\\\\n" % i.impact
+            print >>failkeluar,"\\vfill"
+            print >>failkeluar,"\\tajukbawah\n"
             print >>failkeluar,"\n"
             print >>failkeluar,"\\newpage"
 
     #print >>failkeluar,"\\end{longtable}\n"
-
-
-    print >>failkeluar,"\\vfill"
-
-    print\
-    >>failkeluar,".........................................\\hspace{8.8cm}Tarikh/\\textit{Date}.........................\n"
-
-    print >>failkeluar,"Tandatangan Pengetua\n"
-    print >>failkeluar,"\\textit{Principal's Signature}"
-
-    print >>failkeluar,"\\newpage"
-
 
 
     print >>failkeluar,"\\end{document}\n"
