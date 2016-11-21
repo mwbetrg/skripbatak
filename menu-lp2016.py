@@ -1338,6 +1338,14 @@ def writeweeklyf6():
     print >>failkeluar,"\\usepackage{onepagem}\n\
     \\usepackage{pstricks}\n\
     \\setlength\\parindent{0pt}\n\
+    \\newcommand{\\tajukatas}\n\
+    {\n\
+	\\begin{center}\n\
+	\\textbf{KURSUS PERSEDIAAN UNIVERSITI}\\\\\n\
+SMK TENGKU INTAN ZAHARAH 23000 DUNGUN TERENGGANU\\\\\n\
+\\textbf{\\textit{RANCANGAN PENGAJARAN HARIAN}}\n\
+	\\end{center}\n\
+}\n\
     \\begin{document}\n"
 
     #namahari = time.strftime("%A",time.strptime(str(datesun),"%Y%m%d"))
@@ -1347,6 +1355,7 @@ def writeweeklyf6():
     for i in lpweeksun:
 
         if i.theme.startswith("PEPERIKSAAN"):
+            print >>failkeluar,"\\tajukatas\n"
             print >>failkeluar,"%s \\hfill %s" % (i.tingkatan, i.date)
             print >>failkeluar,"\\\\"
             print >>failkeluar,"\n%s-%s\
@@ -1436,6 +1445,7 @@ def writeweeklyf6():
             print >>failkeluar,"\\hline\n"
 
         else:
+            print >>failkeluar,"\\tajukatas\n"
             print >>failkeluar,"%s \hfill %s" % (i.tingkatan, i.date)
             print >>failkeluar,"\\\\\n"
             print >>failkeluar,"%s-%s Theme / Topic: %s -\
