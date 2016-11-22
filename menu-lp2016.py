@@ -1334,6 +1334,11 @@ def writeweeklyf6():
     print >>failkeluar,"\\usepackage{onepagem}\n\
     \\usepackage{pstricks}\n\
     \\setlength\\parindent{0pt}\n\
+    \\usepackage{wallpaper}\n\
+    \\ULCornerWallPaper{0.1}{smktiz.jpg}\n\
+    \\URCornerWallPaper{0.1}{smktiz.jpg}\n\
+    \\LRCornerWallPaper{0.1}{smktiz.jpg}\n\
+    \\LLCornerWallPaper{0.1}{smktiz.jpg}\n\
     \\newcommand{\\tajukatas}\n\
     {\n\
     \\begin{center}\n\
