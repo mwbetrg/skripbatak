@@ -1335,10 +1335,10 @@ def writeweeklyf6():
     \\usepackage{pstricks}\n\
     \\setlength\\parindent{0pt}\n\
     \\usepackage{wallpaper}\n\
-    \\ULCornerWallPaper{0.1}{smktiz.jpg}\n\
-    \\URCornerWallPaper{0.1}{smktiz.jpg}\n\
-    \\LRCornerWallPaper{0.1}{smktiz.jpg}\n\
-    \\LLCornerWallPaper{0.1}{smktiz.jpg}\n\
+    \\ULCornerWallPaper{0.1}{ul.png}\n\
+    \\URCornerWallPaper{0.1}{ur.png}\n\
+    \\LRCornerWallPaper{0.1}{lr.png}\n\
+    \\LLCornerWallPaper{0.1}{ll.png}\n\
     \\newcommand{\\tajukatas}\n\
     {\n\
     \\begin{center}\n\
@@ -1386,8 +1386,8 @@ def writeweeklyf6():
 	 & \\\\ \n\
 	 & \\\\ \n\
  	 & \\\\ \n\
-	 \\hline \\mbox{\\textbf{GURU GANTI:}}  \\linebreak \\textbf{MASA:}\n\
-    \\linebreak \\textbf{TINGKATAN:} &\\textbf{\\textit{MESYUARAT  / TAKLIMAT  /\n\
+	 \\hline \\mbox{\\textit{GURU GANTI:}}  \\linebreak \\textit{MASA:}\n\
+    \\linebreak \\textit{TINGKATAN:} &\\textbf{\\textit{MESYUARAT  / TAKLIMAT  /\n\
     AKTIVITI}} 	\\\\  \n\
 	& \\\\ \n\
 	& \\\\ \n\
