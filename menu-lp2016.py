@@ -1360,6 +1360,49 @@ def writeweeklyf6():
     }\n\
     \\newcommand{\\tajukbawah}\n\
     {\n\
+	 \\begin{minipage}{8cm}\n\
+	 \\textbf{BBM:}\n\
+	 \\begin{itemize}\n\
+	 \\item \\mbox{\\textit{Multimedia/LCD/Komputer}}  \\Large \\hfill \\centerline{\\ding{114}} \\normalsize \n\
+    \\item  \\textit{Internet} \\hfill \\Large \\centerline{\\ding{114}} \\normalsize\n\
+    \\item \\textit{Gambar/Lakaran/Peta} \\hfill \\Large  \\centerline{\\ding{114}} \\normalsize \n\
+    \\item \\mbox{\\textit{PowerPoint/Flash}}\n\
+    \\item \\mbox{\\textit{Keratan Akhbar/Majalah}}\n\
+    \\item \\textit{Jurnal / Ensaiklopedia / Buku Rujukan}\n\
+    \\item \\textit{CD Perisian}\n\
+    \\item \\textit{Bahan Edaran}\n\
+    \\item \\textit{Peralatan Ujikaji}\n\
+	 \\end{itemize}\n\
+    \\end{minipage} \\hspace{1cm} \\begin{minipage}{8cm}\n\
+	\\textbf{Impak:}\n\
+	\\begin{itemize}\n\
+	\\item \\textit{Objektif  P\&P Tercapai}\n\
+	\\item \\textit{Pelajar  Memberi Tumpuan Sepenuhnya}\n\
+    \\item\\textit{Pelajar Tidak Bersedia} \n\
+	\\item \\textit{Perlu Kelas Lanjutan}\n\
+    \\item \\textit{Kelas Ditangguhkan}\n\
+	\\item 	\\textit{Peperiksaan / Ujian}\n\
+	\\item \\hrulefill\n\
+		 \\item \\hrulefill\n\
+		 \\item \\hrulefill\n\
+	 \\end{itemize}\n\
+   \\end{minipage}\n\
+   \\small \n\
+   \\begin{longtable}{|p{8cm}|p{8cm}|}\n\
+	\\hline	\\textbf{\\textit{TUGASAN DI LUAR JANGKAAN}} &\\textbf{\\textit{TUGASAN HARI INI:}} \\\\ \n\
+ 	 & \\\\ \n\
+	 & \\\\ \n\
+	 & \\\\ \n\
+ 	 & \\\\ \n\
+	 \\hline \\mbox{\\textbf{GURU GANTI:}}  \\linebreak \\textbf{MASA:}\n\
+    \\linebreak \\textbf{TINGKATAN:} &\\textbf{\\textit{MESYUARAT  / TAKLIMAT  /\n\
+    AKTIVITI}} 	\\\\  \n\
+	& \\\\ \n\
+	& \\\\ \n\
+	& \\\\ \n\
+    \\hline  \n\
+    \\end{longtable} \n\
+     \\normalsize \n\
    .........................................\\hspace{8.8cm}Tarikh/\\textit{Date}.........................\n\
     Tandatangan Pengetua\\\\\n\
     \\textit{Principal's Signature}\n\
@@ -1476,8 +1519,8 @@ def writeweeklyf6():
             print >>failkeluar,"Content : %s\\\\\n" % i.content
             print >>failkeluar,"Activities : \\ding{172} %s, \\ding{173}\
             %s\\\\\n" % (i.activity1,i.activity2)
-            print >>failkeluar,"Assimilation : %s\\\\" % i.assimilation
-            print >>failkeluar,"Impact/Reflection : \\textit{%s}\\\\\n" % i.impact
+            #print >>failkeluar,"Assimilation : %s\\\\" % i.assimilation
+            #print >>failkeluar,"Impact/Reflection : \\textit{%s}\\\\\n" % i.impact
             print >>failkeluar,"\\vfill"
             print >>failkeluar,"\\tajukbawah\n"
             print >>failkeluar,"\n"
