@@ -1362,17 +1362,17 @@ def writeweeklyf6():
     \\end{longtable} \\vspace{0.3cm}\n\
     \\end{minipage} \\hspace{1cm} \\begin{minipage}{8cm}\n\
 	\\textbf{Impak:}\n\
-	\\begin{itemize}\n\
-	\\item \\textit{Objektif  P\&P Tercapai}\n\
-	\\item \\textit{Pelajar  Memberi Tumpuan Sepenuhnya}\n\
-    \\item\\textit{Pelajar Tidak Bersedia} \n\
-	\\item \\textit{Perlu Kelas Lanjutan}\n\
-    \\item \\textit{Kelas Ditangguhkan}\n\
-	\\item 	\\textit{Peperiksaan / Ujian}\n\
-	\\item \\hrulefill\n\
-		 \\item \\hrulefill\n\
-		 \\item \\hrulefill\n\
-	 \\end{itemize}\n\
+	\\begin{longtable}{p{6cm}p{2cm}}\n\
+	\\textbullet \\textit{Objektif  P\&P Tercapai}& \\Large \\centerline{\\ding{114}} \\\\\n\
+	\\textbullet \\textit{Pelajar  Memberi Tumpuan Sepenuhnya}& \\Large \\centerline{\\ding{114}} \\\\\n\
+    \\textbullet\\textit{Pelajar Tidak Bersedia}& \\Large \\centerline{\\ding{114}} \\\\ \n\
+	\\textbullet \\textit{Perlu Kelas Lanjutan}& \\Large \\centerline{\\ding{114}} \\\\\n\
+    \\textbullet \\textit{Kelas Ditangguhkan}& \\Large \\centerline{\\ding{114}} \\\\\n\
+	\\textbullet 	\\textit{Peperiksaan / Ujian}& \\Large \\centerline{\\ding{114}} \\\\\n\
+    \\multicolumn{2}{l}{\\textbullet \\hrulefill} \\\\ \n\
+    \\multicolumn{2}{l}{\\textbullet \\hrulefill} \\\\ \n\
+    \\multicolumn{2}{l}{\\textbullet \\hrulefill} \\\\ \n\
+	 \\end{longtable}\n\
    \\end{minipage}\n\
    \\small \n\
    \\begin{longtable}{|p{8cm}|p{8cm}|}\n\
@@ -1389,6 +1389,7 @@ def writeweeklyf6():
 	& \\\\ \n\
     \\hline  \n\
     \\end{longtable} \n\
+    \\vfill \n\
      \\normalsize \n\
    .........................................\\hspace{8.8cm}Tarikh/\\textit{Date}.........................\n\
     Tandatangan Pengetua\\\\\n\
@@ -1493,7 +1494,7 @@ def writeweeklyf6():
 
         else:
             print >>failkeluar,"\\tajukatas\n"
-            print >>failkeluar,"%s \\hfill %s %s (%s-%s8)" % (i.tingkatan, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
+            print >>failkeluar,"%s \\hfill %s %s (%s-%s)" % (i.tingkatan, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
             print >>failkeluar,"\\\\\n"
             print >>failkeluar,"Theme / Topic: %s - \\textit{%s}\\\\" %  (i.theme,i.topic)
             print >>failkeluar,"English Learning\
