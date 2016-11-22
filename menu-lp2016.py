@@ -1350,17 +1350,16 @@ def writeweeklyf6():
     {\n\
 	 \\begin{minipage}{8cm}\n\
 	 \\textbf{BBM:}\n\
-	 \\begin{itemize}\n\
-	 \\item \\mbox{\\textit{Multimedia/LCD/Komputer}}  \\Large \\hfill \\centerline{\\ding{114}} \\normalsize \n\
-    \\item  \\textit{Internet} \\hfill \\Large \\centerline{\\ding{114}} \\normalsize\n\
-    \\item \\textit{Gambar/Lakaran/Peta} \\hfill \\Large  \\centerline{\\ding{114}} \\normalsize \n\
-    \\item \\mbox{\\textit{PowerPoint/Flash}}\n\
-    \\item \\mbox{\\textit{Keratan Akhbar/Majalah}}\n\
-    \\item \\textit{Jurnal / Ensaiklopedia / Buku Rujukan}\n\
-    \\item \\textit{CD Perisian}\n\
-    \\item \\textit{Bahan Edaran}\n\
-    \\item \\textit{Peralatan Ujikaji}\n\
-	 \\end{itemize}\n\
+     \\begin{longtable}{p{6cm}p{2cm}}\n\
+     \\textbullet  \\textit{Internet}  & \\Large \\centerline{\\ding{114}}  \\\\ \n\
+    \\textbullet \\textit{Gambar/Lakaran/Peta} & \\Large \\centerline{\\ding{114}} \\\\ \n\
+    \\textbullet \\mbox{\\textit{PowerPoint/Flash}} & \\Large \\centerline{\\ding{114}} \\\\ \n\
+    \\textbullet \\mbox{\\textit{Keratan Akhbar/Majalah}} & \\Large \\centerline{\\ding{114}} \\\\ \n\
+    \\textbullet \\textit{Jurnal / Ensaiklopedia / Buku Rujukan} & \\Large \\centerline{\\ding{114}} \\\\ \n\
+    \\textbullet \\textit{CD Perisian}  & \\Large \\centerline{\\ding{114}} \\\\ \n\
+    \\textbullet \\textit{Bahan Edaran}  & \\Large \\centerline{\\ding{114}} \\\\ \n\
+    \\textbullet \\textit{Peralatan Ujikaji} & \\Large \\centerline{\\ding{114}} \\\\ \n\
+    \\end{longtable} \\vspace{0.3cm}\n\
     \\end{minipage} \\hspace{1cm} \\begin{minipage}{8cm}\n\
 	\\textbf{Impak:}\n\
 	\\begin{itemize}\n\
