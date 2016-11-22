@@ -1324,18 +1324,6 @@ def writeweeklyf6():
     failtexpdf = sdir+"weekly"+str(week)+".pdf"
     failkeluar = open(failtex, "w")  
 
- #   tdatemon = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=1)
-    #tdatetue = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=2)
-    #tdatewed = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=3)
- #   tdatethu = datetime.datetime.strptime(str(datesun), '%Y%m%d') + datetime.timedelta(days=4)
-
- #   datemon = tdatemon.strftime('%Y%m%d')
-    #datetue = tdatetue.strftime('%Y%m%d')
-    #datewed = tdatewed.strftime('%Y%m%d')
- #   datethu = tdatethu.strftime('%Y%m%d')                             
-
-    #print datesun
-
     print >>failkeluar,"\\documentclass[a4paper,12pt]{article}\n\
     \\usepackage{palatino}\n\
     \\usepackage{fancyvrb,pifont,enumerate,url,graphicx,tabularx,longtable,quotes,setspace,floatflt,umoline,rotating,soul}\n\
@@ -1417,10 +1405,9 @@ def writeweeklyf6():
 
         if i.theme.startswith("PEPERIKSAAN"):
             print >>failkeluar,"\\tajukatas\n"
-            print >>failkeluar,"%s \\hfill %s %s" % (i.tingkatan, namahari(i.date), tarikhini(i.date))
+            print >>failkeluar,"%s \\hfill %s %s (%s-%s)" % (i.tingkatan, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
             print >>failkeluar,"\\\\"
-            print >>failkeluar,"\n%s-%s\
-            %s   \\\\" % (i.timestart,i.timeend,i.theme.upper())
+            print >>failkeluar,"\n%s", i.theme.upper()
             print >>failkeluar,"\n %s \\\\ \
             \\\\" % i.topic 
             print >>failkeluar,"\n [%s] \\\\" % i.lo1
@@ -1507,10 +1494,9 @@ def writeweeklyf6():
 
         else:
             print >>failkeluar,"\\tajukatas\n"
-            print >>failkeluar,"%s \hfill %s %s" % (i.tingkatan, namahari(i.date), tarikhini(i.date))
+            print >>failkeluar,"%s \\hfill %s %s (%s-%s8)" % (i.tingkatan, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
             print >>failkeluar,"\\\\\n"
-            print >>failkeluar,"%s-%s Theme / Topic: %s -\
-            \\textit{%s}\\\\" %  (i.timestart,i.timeend,i.theme,i.topic)
+            print >>failkeluar,"Theme / Topic: %s - \\textit{%s}\\\\" %  (i.theme,i.topic)
             print >>failkeluar,"English Learning\
             objective(s) : Students will be able to:\\\\"
             print >>failkeluar,"(i) %s\\\\\n" % i.lo1
