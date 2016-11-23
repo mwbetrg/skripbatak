@@ -1353,16 +1353,25 @@ def writeweeklyf6():
     }\n\
     \\newcommand{\\tajukbawah}\n\
     {\n\
-\\textbf{Penerapan Kemahiran:}\n\
-\\small\n\
-\\begin{longtable}{p{3cm}p{0.3cm}p{3cm}p{0.3cm}p{3cm}p{0.3cm}p{3cm}}\n\
-Interpretasi Data& \\Large \\centerline{\\ding{114}}& Memberikan Pendapat&\\Large \\centerline{\\ding{114}} & Penyelesaian Masalah& \\Large \\centerline{\\ding{114}}& Lain-lain (Sila Nyatakan)\\\\
-Mengulas Isu&\\Large \\centerline{\\ding{114}} & Inkuiri Penemuan&\\Large \\centerline{\\ding{114}} & Mastery Learning& \\Large \centerline{\ding{114}}& \hrulefill \\
-Menghurai Fakta& \Large \centerline{\ding{114}}& Belajar Cara Belajar& \Large \centerline{\ding{114}}& Pusat Akses Kenduri&  \Large \centerline{\ding{114}}& \hrulefill \\
-KBKK& \Large \centerline{\ding{114}}& Kontekstual& \Large \centerline{\ding{114}}& Membuat Rujukan& \Large \centerline{\ding{114}}& \hrulefill \\
-Kecerdasan Pelbagai& \Large \centerline{\ding{114}}& Konstruktisme&\Large \centerline{\ding{114}} & Projek / Kajian Lapangan& \Large \centerline{\ding{114}}& \hrulefill \\
-\\normalsize\n\
-\\end{longtable}\n\
+    \\textbf{Penerapan Kemahiran:}\n\
+    \\small\n\
+    \\begin{longtable}{p{3.5cm}p{0.2cm}p{3.5cm}p{0.2cm}p{3.7cm}p{0.2cm}p{3.7cm}}\n\
+    Interpretasi Data& \\Large \\centerline{\\ding{114}}& Memberikan\n\
+    Pendapat&\\Large \\centerline{\\ding{114}} & Penyelesaian Masalah& \\Large \n\
+    \\centerline{\\ding{114}}& Lain-lain (Sila Nyatakan)\\\\ \n\
+    Mengulas Isu&\\Large \\centerline{\\ding{114}} & Inkuiri Penemuan&\\Large \n\
+    \\centerline{\\ding{114}} & Mastery Learning& \\Large \\centerline{\\ding{114}}& \\hrulefill \\\\ \n\
+    Menghurai Fakta& \\Large \\centerline{\\ding{114}}& Belajar Cara Belajar&   \n\
+    \\Large \\centerline{\\ding{114}}& Pusat Akses Kenduri& \\Large \n\
+    \\centerline{\\ding{114}}& \\hrulefill \\\\ \n\
+    KBKK& \\Large \\centerline{\\ding{114}}& Kontekstual& \\Large \n\
+    \\centerline{\\ding{114}}& Membuat Rujukan& \\Large\n\
+    \\centerline{\\ding{114}}& \\hrulefill \\\\ \n\
+    Kecerdasan Pelbagai& \\Large \\centerline{\\ding{114}}& \n\
+    Konstruktisme&\\Large \\centerline{\ding{114}} & Projek / Kajian Lapangan& \n\
+    \\Large \\centerline{\\ding{114}}& \\hrulefill \\\\ \n\
+    \\normalsize\n\
+    \\end{longtable}\n\
 	 \\begin{minipage}{8cm}\n\
 	 \\textbf{BBM:}\n\
      \\begin{longtable}{p{6cm}p{2cm}}\n\
@@ -1394,13 +1403,9 @@ Kecerdasan Pelbagai& \Large \centerline{\ding{114}}& Konstruktisme&\Large \cente
 	\\hline	\\textbf{\\textit{TUGASAN DI LUAR JANGKAAN}} &\\textbf{\\textit{TUGASAN HARI INI:}} \\\\ \n\
  	 & \\\\ \n\
 	 & \\\\ \n\
-	 & \\\\ \n\
- 	 & \\\\ \n\
 	 \\hline \\mbox{\\textit{GURU GANTI:}}  \\linebreak \\textit{MASA:}\n\
     \\linebreak \\textit{TINGKATAN:} &\\textbf{\\textit{MESYUARAT  / TAKLIMAT  /\n\
     AKTIVITI}} 	\\\\  \n\
-	& \\\\ \n\
-	& \\\\ \n\
 	& \\\\ \n\
     \\hline  \n\
     \\end{longtable} \n\
@@ -1420,14 +1425,15 @@ Kecerdasan Pelbagai& \Large \centerline{\ding{114}}& Konstruktisme&\Large \cente
 
         if i.theme.startswith("PEPERIKSAAN"):
             print >>failkeluar,"\\tajukatas\n"
-            print >>failkeluar,"%s \\hfill %s %s (%s-%s)" % (i.tingkatan, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
+            print >>failkeluar,"\\large\\textbf{%s} \\hfill [WEEK: %s]  %s %s\
+            (%s-%s) \\normalsize" %\
+            (i.tingkatan, i.week, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
             print >>failkeluar,"\\\\"
-            print >>failkeluar,"\n%s", i.theme.upper()
-            print >>failkeluar,"\n %s \\\\ \
-            \\\\" % i.topic 
+            print >>failkeluar,"\n\\textbf{[PEPERIKSAAN]} %s", i.theme.upper()
+            print >>failkeluar,"\n %s \\\\" % i.topic 
             print >>failkeluar,"\n [%s] \\\\" % i.lo1
             print >>failkeluar,"\n %s \\\\" %  i.lo2
-            print >>failkeluar,"\n %s  \\\\" % i.lo3
+            #print >>failkeluar,"\n %s  \\\\" % i.lo3
             print >>failkeluar,"\\vfill\n"
             print >>failkeluar,"\\tajukbawah"
             print >>failkeluar,"\\newpage"
@@ -1509,17 +1515,19 @@ Kecerdasan Pelbagai& \Large \centerline{\ding{114}}& Konstruktisme&\Large \cente
 
         else:
             print >>failkeluar,"\\tajukatas\n"
-            print >>failkeluar,"%s \\hfill %s %s (%s-%s)" % (i.tingkatan, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
+            print >>failkeluar,"\\large\\textbf{%s} \\hfill [WEEK: %s]  %s %s\
+            (%s-%s) \\normalsize" %\
+            (i.tingkatan, i.week, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
             print >>failkeluar,"\\\\\n"
-            print >>failkeluar,"Theme / Topic: %s - \\textit{%s}\\\\" %  (i.theme,i.topic)
-            print >>failkeluar,"English Learning\
-            objective(s) : Students will be able to:\\\\"
+            print >>failkeluar,"\\textbf{Theme / Topic:} %s - \\textit{%s}\\\\" %  (i.theme,i.topic)
+            print >>failkeluar,"\\textbf{English Learning\
+            objective(s) :} Students will be able to:\\\\"
             print >>failkeluar,"(i) %s\\\\\n" % i.lo1
             print >>failkeluar,"(ii) %s\\\\\n" % i.lo2
             print >>failkeluar,"(iii) %s\\\\\n" % i.lo3
-            print >>failkeluar,"Content : %s\\\\\n" % i.content
-            print >>failkeluar,"Activities : \\ding{172} %s, \\ding{173}\
-            %s\\\\\n" % (i.activity1,i.activity2)
+            #print >>failkeluar,"Content : %s\\\\\n" % i.content
+            #print >>failkeluar,"Activities : \\ding{172} %s, \\ding{173}\
+            #%s\\\\\n" % (i.activity1,i.activity2)
             #print >>failkeluar,"Assimilation : %s\\\\" % i.assimilation
             #print >>failkeluar,"Impact/Reflection : \\textit{%s}\\\\\n" % i.impact
             print >>failkeluar,"\\vfill"
