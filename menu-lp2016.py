@@ -607,7 +607,7 @@ def writeweekly():
 
     print datesun
 
-    print >>failkeluar,"\\documentclass[a4paper,12pt]{article}\n\
+    print >>failkeluar,"\\documentclass[a4paper,12pt,twoside]{article}\n\
     \\usepackage{palatino}\n\
     \\usepackage{fancyvrb,pifont,enumerate,url,graphicx,tabularx,longtable,quotes,setspace,floatflt,umoline,rotating,soul}\n\
     \\usepackage[top=1.8cm,bottom=2cm,left=1.5cm,right=1.5cm]{geometry}\n\
@@ -1425,7 +1425,7 @@ def writeweeklyf6():
 
         if i.theme.startswith("PEPERIKSAAN"):
             print >>failkeluar,"\\tajukatas\n"
-            print >>failkeluar,"\\large\\textbf{%s} \\hfill [WEEK: %s]  %s %s\
+            print >>failkeluar,"\\large\\textbf{%s} \\so{MUET} \\hfill [WEEK: %s]  %s %s\
             (%s-%s) \\normalsize" %\
             (i.tingkatan, i.week, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
             print >>failkeluar,"\\\\"
@@ -1515,7 +1515,7 @@ def writeweeklyf6():
 
         else:
             print >>failkeluar,"\\tajukatas\n"
-            print >>failkeluar,"\\large\\textbf{%s} \\hfill [WEEK: %s]  %s %s\
+            print >>failkeluar,"\\large\\textbf{%s} \\so{MUET} \\hfill [WEEK: %s]  %s %s\
             (%s-%s) \\normalsize" %\
             (i.tingkatan, i.week, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
             print >>failkeluar,"\\\\\n"
@@ -1526,8 +1526,8 @@ def writeweeklyf6():
             print >>failkeluar,"(ii) %s\\\\\n" % i.lo2
             print >>failkeluar,"(iii) %s\\\\\n" % i.lo3
             #print >>failkeluar,"Content : %s\\\\\n" % i.content
-            #print >>failkeluar,"Activities : \\ding{172} %s, \\ding{173}\
-            #%s\\\\\n" % (i.activity1,i.activity2)
+            print >>failkeluar,"Activities : \\ding{172} %s, \\ding{173}\
+            %s\\\\\n" % (i.activity1,i.activity2)
             #print >>failkeluar,"Assimilation : %s\\\\" % i.assimilation
             #print >>failkeluar,"Impact/Reflection : \\textit{%s}\\\\\n" % i.impact
             print >>failkeluar,"\\vfill"
