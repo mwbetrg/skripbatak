@@ -1353,6 +1353,16 @@ def writeweeklyf6():
     }\n\
     \\newcommand{\\tajukbawah}\n\
     {\n\
+\\textbf{Penerapan Kemahiran:}\n\
+\\small\n\
+\\begin{longtable}{p{3cm}p{0.3cm}p{3cm}p{0.3cm}p{3cm}p{0.3cm}p{3cm}}\n\
+Interpretasi Data& \\Large \\centerline{\\ding{114}}& Memberikan Pendapat&\\Large \\centerline{\\ding{114}} & Penyelesaian Masalah& \\Large \\centerline{\\ding{114}}& Lain-lain (Sila Nyatakan)\\\\
+Mengulas Isu&\\Large \\centerline{\\ding{114}} & Inkuiri Penemuan&\\Large \\centerline{\\ding{114}} & Mastery Learning& \\Large \centerline{\ding{114}}& \hrulefill \\
+Menghurai Fakta& \Large \centerline{\ding{114}}& Belajar Cara Belajar& \Large \centerline{\ding{114}}& Pusat Akses Kenduri&  \Large \centerline{\ding{114}}& \hrulefill \\
+KBKK& \Large \centerline{\ding{114}}& Kontekstual& \Large \centerline{\ding{114}}& Membuat Rujukan& \Large \centerline{\ding{114}}& \hrulefill \\
+Kecerdasan Pelbagai& \Large \centerline{\ding{114}}& Konstruktisme&\Large \centerline{\ding{114}} & Projek / Kajian Lapangan& \Large \centerline{\ding{114}}& \hrulefill \\
+\\normalsize\n\
+\\end{longtable}\n\
 	 \\begin{minipage}{8cm}\n\
 	 \\textbf{BBM:}\n\
      \\begin{longtable}{p{6cm}p{2cm}}\n\
