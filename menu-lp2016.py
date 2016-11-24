@@ -434,7 +434,7 @@ def viewdate():
 
     print "="*40
     for i in u:
-        print i.id, i.tingkatan+" : "+i.timestart+"-"+i.timeend+" Theme: "+i.theme+"\
+        print i.id, i.tingkatan+" (W:"+i.week+") "+i.timestart+"-"+i.timeend+" Theme: "+i.theme+"\
             Topic:"+i.topic+" Note:"+i.note
     print "="*40
     print "9. Back"
