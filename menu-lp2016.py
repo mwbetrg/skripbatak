@@ -1308,11 +1308,11 @@ def writeweeklyf6():
     lpweeksun = Lessonplan2016.select().where(Lessonplan2016.week == week)
 
     def namahari(input):
-        hari = time.strftime("%A", time.strptime(str(input), "%Y%m%d"))
+        hari = time.strftime("%a", time.strptime(str(input), "%Y%m%d"))
         return hari
 
     def tarikhini(input):
-        tarikh = time.strftime("%d %B %Y",time.strptime(str(input),"%Y%m%d")) 
+        tarikh = time.strftime("%d %b %Y",time.strptime(str(input),"%Y%m%d")) 
         return tarikh
 
     #datesun = int(lpweeksun.date)
@@ -1425,7 +1425,8 @@ def writeweeklyf6():
 
         if i.theme.startswith("PEPERIKSAAN"):
             print >>failkeluar,"\\tajukatas\n"
-            print >>failkeluar,"\\large\\textbf{%s} \\so{MUET} \\hfill [WEEK: %s]  %s %s\
+            print >>failkeluar,"\\large\\textbf{%s} \\so{MUET}  [WEEK:\
+                %s]\\hfill  %s %s\
             (%s-%s) \\normalsize" %\
             (i.tingkatan, i.week, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
             print >>failkeluar,"\\\\"
