@@ -1353,7 +1353,7 @@ def writeweeklyf6():
     }\n\
     \\newcommand{\\tajukbawah}\n\
     {\n\
-    \\textbf{Penerapan Kemahiran:}\n\
+    \\textbf{\\so{PENERAPAN KEMAHIRAN:}}\n\
     \\small\n\
     \\begin{longtable}{p{3.5cm}p{0.2cm}p{3.5cm}p{0.2cm}p{3.7cm}p{0.2cm}p{3.7cm}}\n\
     Interpretasi Data& \\Large \\centerline{\\ding{114}}& Memberikan\n\
@@ -1372,8 +1372,8 @@ def writeweeklyf6():
     \\Large \\centerline{\\ding{114}}& \\hrulefill \\\\ \n\
     \\normalsize\n\
     \\end{longtable}\n\
-	 \\begin{minipage}{8cm}\n\
-	 \\textbf{BBM:}\n\
+	 \\begin{minipage}{8.5cm}\n\
+	 \\textbf{\\so{BBM:}}\n\
      \\begin{longtable}{p{6cm}p{2cm}}\n\
      \\textbullet  \\textit{Internet}  & \\Large \\centerline{\\ding{114}}  \\\\ \n\
     \\textbullet \\textit{Gambar/Lakaran/Peta} & \\Large \\centerline{\\ding{114}} \\\\ \n\
@@ -1384,8 +1384,8 @@ def writeweeklyf6():
     \\textbullet \\textit{Bahan Edaran}  & \\Large \\centerline{\\ding{114}} \\\\ \n\
     \\textbullet \\textit{Peralatan Ujikaji} & \\Large \\centerline{\\ding{114}} \\\\ \n\
     \\end{longtable} \\vspace{0.3cm}\n\
-    \\end{minipage} \\hspace{1cm} \\begin{minipage}{8cm}\n\
-	\\textbf{Impak:}\n\
+    \\end{minipage} \\hspace{0.3cm} \\begin{minipage}{8.4cm}\n\
+	\\textbf{\\so{IMPAK:}}\n\
 	\\begin{longtable}{p{6cm}p{2cm}}\n\
 	\\textbullet \\textit{Objektif  P\&P Tercapai}& \\Large \\centerline{\\ding{114}} \\\\\n\
 	\\textbullet \\textit{Pelajar  Memberi Tumpuan Sepenuhnya}& \\Large \\centerline{\\ding{114}} \\\\\n\
@@ -1403,8 +1403,8 @@ def writeweeklyf6():
 	\\hline	\\textbf{\\textit{TUGASAN DI LUAR JANGKAAN}} &\\textbf{\\textit{TUGASAN HARI INI:}} \\\\ \n\
  	 & \\\\ \n\
 	 & \\\\ \n\
-	 \\hline \\mbox{\\textit{GURU GANTI:}}  \\linebreak \\textit{MASA:}\n\
-    \\linebreak \\textit{TINGKATAN:} &\\textbf{\\textit{MESYUARAT  / TAKLIMAT  /\n\
+	 \\hline \\mbox{\\textbf{\\textit{GURU GANTI:}}}  \\linebreak \\textbf{\\textit{MASA:}}\n\
+    \\linebreak \\textbf{\\textit{TINGKATAN:}} &\\textbf{\\textit{MESYUARAT  / TAKLIMAT  /\n\
     AKTIVITI}} 	\\\\  \n\
 	& \\\\ \n\
     \\hline  \n\
