@@ -518,8 +518,8 @@ def pindahbankkelp2016():
             order_by(Lessonplan2016.timestart).\
             order_by(Lessonplan2016.date)
     for l in lp:
-        print "("+str(l.id)+")", str(l.date)+" : "+ l.tingkatan, l.timestart,\
-        l.timeend+" ["+l.duration+" minutes] "
+        print "("+str(l.id)+")", str(l.date)+" : (W"+ l.week+")" + l.tingkatan, l.timestart,\
+        l.timeend+" ["+l.duration+" min] "
 
     selectlpid = raw_input("\nPlease enter LP 2016 ID\n")
 
@@ -1425,10 +1425,10 @@ def writeweeklyf6():
 
         if i.theme.startswith("PEPERIKSAAN"):
             print >>failkeluar,"\\tajukatas\n"
-            print >>failkeluar,"\\large\\textbf{%s} \\so{MUET}  [WEEK:\
-                %s]\\hfill  %s %s\
+            print >>failkeluar,"\\large\\textbf{%s} \\so{MUET} \\hfill [WEEK:\
+                    %s] %s ::%s::\
             (%s-%s) \\normalsize" %\
-            (i.tingkatan, i.week, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
+            (i.tingkatan, i.week,  tarikhini(i.date),namahari(i.date) ,i.timestart,i.timeend,)
             print >>failkeluar,"\\\\"
             print >>failkeluar,"\n\\textbf{[PEPERIKSAAN]} %s", i.theme.upper()
             print >>failkeluar,"\n %s \\\\" % i.topic 
@@ -1516,9 +1516,10 @@ def writeweeklyf6():
 
         else:
             print >>failkeluar,"\\tajukatas\n"
-            print >>failkeluar,"\\large\\textbf{%s} \\so{MUET} \\hfill [WEEK: %s]  %s %s\
+            print >>failkeluar,"\\large\\textbf{%s} \\so{MUET} \\hfill [WEEK:\
+                    %s] %s ::%s::\
             (%s-%s) \\normalsize" %\
-            (i.tingkatan, i.week, namahari(i.date), tarikhini(i.date),i.timestart,i.timeend,)
+            (i.tingkatan, i.week,  tarikhini(i.date),namahari(i.date) ,i.timestart,i.timeend,)
             print >>failkeluar,"\\\\\n"
             print >>failkeluar,"\\textbf{Theme / Topic:} %s - \\textit{%s}\\\\" %  (i.theme,i.topic)
             print >>failkeluar,"\\textbf{English Learning\
