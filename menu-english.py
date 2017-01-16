@@ -45,7 +45,7 @@ if os.path.exists('/storage/extSdCard'):
     backupdir = '/storage/extSdCard/dbbackup/'
     db = '/storage/extSdCard/mydb/english-notes-exercises.sqlite'
 else:
-    database = SqliteDatabase('english-notes-exercises.sqlite', **{})
+    database = SqliteDatabase('/usb/termux/termux-git/db/english-notes-exercises.sqlite', **{})
 
 class BaseModel(Model):
     class Meta:
