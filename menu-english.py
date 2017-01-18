@@ -33,10 +33,18 @@ from email import encoders
 import ConfigParser
 from peewee import *
 
-config = ConfigParser.ConfigParser()
-config.read("/storage/extSdCard/batak.cfg")
-username = config.get('surat', 'pengguna')
-password = config.get('surat' ,'masuk')
+if os.path.exists('/storage/extSdCard'):
+    config = ConfigParser.ConfigParser()
+    config.read("/storage/extSdCard/batak.cfg")
+    username = config.get('surat', 'pengguna')
+    password = config.get('surat' ,'masuk')
+
+else:
+
+    config = ConfigParser.ConfigParser()
+    config.read("/root/batak.cfg")
+    username = config.get('surat', 'pengguna')
+    password = config.get('surat' ,'masuk')
 
 #-----------------------------------------------------------------------    
 
@@ -44,8 +52,18 @@ if os.path.exists('/storage/extSdCard'):
     database = SqliteDatabase('/storage/extSdCard/Android/data/com.termux/files/vimwiki/db/english-notes-exercises.sqlite', **{})
     backupdir = '/storage/extSdCard/dbbackup/'
     db = '/storage/extSdCard/mydb/english-notes-exercises.sqlite'
+    sdirword =  "/storage/extSdCard/texdocs/wotd/"
+    sdiridiom =  "/storage/extSdCard/texdocs/iotd/"
+    sdirwotd = "/storage/extSdCard/"
+    sdiriotd = "/storage/extSdCard/"
+
 else:
     database = SqliteDatabase('/usb/termux/termux-git/db/english-notes-exercises.sqlite', **{})
+    sdirword =  "/tmp/"
+    sdiridiom =  "/tmp/"
+    sdirwotd = "/tmp/"
+    sdiriotd = "/tmp/"
+
 
 class BaseModel(Model):
     class Meta:
@@ -378,8 +396,7 @@ def searchweburl():
 
 def writeword():
     tarikh = (time.strftime("%Y%m%d"))
-    sdir = "/storage/extSdCard/texdocs/wotd/"
-    failtex = sdir+"wotd-"+tarikh+".tex"
+    failtex = sdirword+"wotd-"+tarikh+".tex"
     failkeluar = open(failtex, "w")  
     print tarikh
     w = Wotd.select().where(Wotd.date == tarikh)
@@ -431,8 +448,7 @@ def writeword():
 
 def writewordtomorrow():
     tarikh = (tomorrow.strftime("%Y%m%d"))
-    sdir = "/storage/extSdCard/texdocs/wotd/"
-    failtex = sdir+"wotd-"+tarikh+".tex"
+    failtex = sdirword+"wotd-"+tarikh+".tex"
     failkeluar = open(failtex, "w")  
     print tarikh
     w = Wotd.select().where(Wotd.date == tarikh)
@@ -492,8 +508,7 @@ def writeidiom():
     print tarikh
 
     tarikh = (time.strftime("%Y%m%d"))
-    sdir = "/storage/extSdCard/texdocs/iotd/"
-    failtex = sdir+"iotd-"+tarikh+".tex"
+    failtex = sdiridiom+"iotd-"+tarikh+".tex"
     failkeluar = open(failtex, "w")  
 
     w = Iotd.select().where(Iotd.date == tarikh)
@@ -536,15 +551,14 @@ def writeidiom():
 def writeidiomtomorrow():
     tarikh = (tomorrow.strftime("%Y%m%d"))
 
-    failtex = "/storage/extSdCard/texdocs/iotd/iotd-"+tarikh+".tex"
+    failtex = sdirword+"iotd-"+tarikh+".tex"
     failkeluar = open(failtex, "w")  
     reload(sys) 
     sys.setdefaultencoding('utf8')
     print tarikh
 
     tarikh = (tomorrow.strftime("%Y%m%d"))
-    sdir = "/storage/extSdCard/texdocs/iotd/"
-    failtex = sdir+"iotd-"+tarikh+".tex"
+    failtex = sdirword+"iotd-"+tarikh+".tex"
     failkeluar = open(failtex, "w")  
 
     w = Iotd.select().where(Iotd.date == tarikh)

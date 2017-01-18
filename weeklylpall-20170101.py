@@ -13,7 +13,7 @@ if os.path.exists('/storage/extSdCard'):
     #backupdir = '/storage/extSdCard/dbbackup/'
     #db = '/storage/extSdCard/mydb/english-notes-exercises.sqlite'
 else:
-    db = SqliteDatabase('lessonplan2010.db', **{})
+    db = SqliteDatabase('/usb/termux/termux-git/db/lessonplan2010.db', **{})
 
 
 #db = SqliteDatabase('lessonplan2010.db', **{})
